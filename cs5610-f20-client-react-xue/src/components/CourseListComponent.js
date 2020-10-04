@@ -2,6 +2,8 @@ import React from "react";
 import CourseRowComponent from "./CourseRowComponent";
 import "./CourseList.css"
 import {findAllCourses, updateCourse, deleteCourse, createCourse} from "../services/CourseService";
+import "./CourseGridComponent"
+import CourseGridComponent from "./CourseGridComponent";
 
 class CourseListComponent extends React.Component {
 
@@ -9,7 +11,8 @@ class CourseListComponent extends React.Component {
         courses: [],
         courseBeingEdited: {},
         courseTitle: "Some Course",
-        course: this.props.course
+        course: this.props.course,
+        listView: true
     }
 
     componentDidMount() {
@@ -19,6 +22,19 @@ class CourseListComponent extends React.Component {
                     courses: courses
                 })
             })
+    }
+
+    changeView = () => {
+        if (this.state.listView === true) {
+            this.setState({
+                listView: false
+            })
+        }
+        else {
+            this.setState({
+                listView: true
+            })
+        }
     }
 
     deleteCourse = (course) => {
@@ -68,7 +84,7 @@ class CourseListComponent extends React.Component {
                     <h1 class="wbdv-sticky-header">
                         <a href={"#"} className="fa fa-bars" aria-hidden="true"/>
                         <span className="mobile-hide">Course Manager</span>
-                        <input placeholder={"New Course"} type={"text"} className=".wbdv-new-course"
+                        <input placeholder={"New Course"} type={"text"} className=".wbdv-new-course "
                                onChange={this.updateTitle}/>
                         <i className="fa fa-plus-circle pull-right .wbdv-add-course-button" aria-hidden={"true"}
                            onClick={this.addCourse}/>
@@ -77,28 +93,48 @@ class CourseListComponent extends React.Component {
 
 
                 <table className="table">
-                    <thead className="thead-light">
+                    <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Owned by</th>
-                        <th className="d-none d-lg-block">Last modified</th>
                         <th>
-                            <a href="#"><i className="fa fa-th .wbdv-grid-layout" aria-hidden="true"/></a>
-                            <a href="#"><i className="fa fa-sort-alpha-asc wbdv-sort float-right" aria-hidden="true"/></a>
+                            <span className="d-none d-sm-block">Owned by</span></th>
+                        <th>
+                            <span className="d-none d-lg-block">Last modified</span>
+                        </th>
+                        <th>
+                            <button><i className="fa fa-th .wbdv-grid-layout" aria-hidden="true"
+                                       onClick={this.changeView}/></button>
+                            <button><i className="fa fa-list-ol" aria-hidden="true"
+                                       onClick={this.changeView}/></button>
+                            <button href="#"><i className="fa fa-sort-alpha-asc wbdv-sort" aria-hidden="true"/></button>
                         </th>
                     </tr>
                     </thead>
                     <tbody>
-                    {
-                        this.state.courses.map(course =>
-                            <CourseRowComponent
-                                key={course._id}
-                                courseBeingEdited={this.state.courseBeingEdited}
-                                editCourse={this.editCourse}
-                                deleteCourse={this.deleteCourse}
-                                course={course}/>
-                        )
-                    }
+                        {
+                            this.state.listView === true &&
+                            this.state.courses.map(course =>
+                                <CourseRowComponent
+                                    key={course._id}
+                                    courseBeingEdited={this.state.courseBeingEdited}
+                                    editCourse={this.editCourse}
+                                    deleteCourse={this.deleteCourse}
+                                    course={course}/>
+                            )
+                        }
+                        {
+                            this.state.view === false &&
+                            this.state.course.map(course =>
+                                <CourseGridComponent
+                                    key={course._id}
+                                    courseBeingEdited={this.state.courseBeingEdited}
+                                    editCourse={this.editCourse}
+                                    deleteCourse={this.deleteCourse}
+                                    course={course}/>
+                            )
+                        }
+
+
                     </tbody>
                 </table>
             </div>

@@ -43,8 +43,11 @@ class CourseRowComponent extends React.Component {
                         <label>{this.state.course.title}</label>
                     }
                 </td>
-                <td >{this.props.course.owner}</td>
-                <td className="d-none d-lg-block">{this.props.course.modified}</td>
+                <td>
+                    <span className="d-none d-sm-block">{this.props.course.owner}</span></td>
+                <td>
+                    <span className="d-none d-lg-block">{this.props.course.modified}</span>
+                </td>
                 <td>
                     <i className="fa fa-2x fa-trash" onClick={() => this.props.deleteCourse(this.props.course)}>
                     </i>
