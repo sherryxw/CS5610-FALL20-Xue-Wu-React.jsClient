@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+// import './index.css';
 import "bootstrap/dist/css/bootstrap.min.css"
-//import './index.css';
+import "font-awesome/css/font-awesome.css"
 import App from './App';
 import CourseListComponent from "./components/CourseListComponent";
 import * as serviceWorker from './serviceWorker';
 
-
 ReactDOM.render(
-
-    <CourseListComponent instructor="Xue" term="Fall 2020"/>,
+    <div className="container">
+        <CourseListComponent
+            instructor="Jose Annunziato"
+            term="Fall 2020"/>
+    </div>,
     document.getElementById('root')
-
 );
 
 // If you want your app to work offline and load faster, you can change
