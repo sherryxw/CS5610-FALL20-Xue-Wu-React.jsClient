@@ -1,0 +1,68 @@
+.wbdv-add-course-button {
+    color: red;
+}
+
+.wbdv-sticky-add-course-button {
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+
+}
+
+.wbdv-sticky-header {
+    position: fixed;
+    top: 0px;
+    background-color: lightblue;
+    left: 0px;
+    right: 0px;
+    padding-top: 20px;
+}
+
+body {
+    padding-top: 90px;
+}
+
+.wbdv-new-course {
+    background-color: aliceblue;
+    font-size: smaller;
+    width: 50%;
+    font-style: italic;
+    border:0;
+}
+
+.wbdv-hamburger {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.wbdv-add-course {
+    padding-right: 140px;
+
+}
+
+@media only screen and (max-width: 1000px) {
+    .mobile-hide{
+        display: none;
+    }
+}
+
+.nav-link {
+    display: contents;
+    color: black;
+}
+
+.wbdv-grid-layout {
+    color: black;
+}
+
+.wbdv-list-layout {
+    color: black;
+}
+
+.wbdv-sort {
+    color: gray;
+}
+
+.wbdv-hamburger {
+    color: black;
+}

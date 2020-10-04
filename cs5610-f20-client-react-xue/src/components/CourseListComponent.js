@@ -1,5 +1,6 @@
 import React from "react";
 import CourseRowComponent from "./CourseRowComponent";
+import "./CourseList.css"
 import {findAllCourses, updateCourse, deleteCourse, createCourse} from "../services/CourseService";
 
 class CourseListComponent extends React.Component {
@@ -32,7 +33,7 @@ class CourseListComponent extends React.Component {
 
     addCourse = () => {
         const newCourse = {
-            title: "New Course",
+            title: this.state.course.title,
             owner: "me",
             modified: (new Date()).toDateString()
         }
@@ -51,26 +52,39 @@ class CourseListComponent extends React.Component {
         })
     }
 
+    updateTitle = (event) => {
+        const newTitle = event.target.value
+        const course = { ...this.state.course }
+        course.title = newTitle
+        this.setState({
+            course: course
+        })
+    }
 
     render() {
         return (
             <div>
-                <h1>
-                    <a href={"#"} className="fa fa-bars" aria-hidden="true"/>
-                    Course Manager
-                    <input placeholder={"New Course"} type={"text"}/>
-                    <i className="fa fa-plus-circle pull-right" aria-hidden={"true"}
-                       onClick={this.addCourse}/>
-                </h1>
+                <div className="form-group row">
+                    <h1 class="wbdv-sticky-header">
+                        <a href={"#"} className="fa fa-bars" aria-hidden="true"/>
+                        <span className="mobile-hide">Course Manager</span>
+                        <input placeholder={"New Course"} type={"text"} className=".wbdv-new-course"
+                               onChange={this.updateTitle}/>
+                        <i className="fa fa-plus-circle pull-right .wbdv-add-course-button" aria-hidden={"true"}
+                           onClick={this.addCourse}/>
+                    </h1>
+                </div>
+
+
                 <table className="table">
                     <thead className="thead-light">
                     <tr>
                         <th>Title</th>
                         <th>Owned by</th>
-                        <th>Last modified</th>
+                        <th className="d-none d-lg-block">Last modified</th>
                         <th>
-                            <a href="#"><i className="fa fa-th" aria-hidden="true"/></a>
-                            <a href="#"><i className="fa fa-sort-alpha-asc" aria-hidden="true"/></a>
+                            <a href="#"><i className="fa fa-th .wbdv-grid-layout" aria-hidden="true"/></a>
+                            <a href="#"><i className="fa fa-sort-alpha-asc wbdv-sort float-right" aria-hidden="true"/></a>
                         </th>
                     </tr>
                     </thead>

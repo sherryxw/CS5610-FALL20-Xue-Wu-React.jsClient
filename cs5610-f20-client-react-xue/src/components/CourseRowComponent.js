@@ -31,6 +31,7 @@ class CourseRowComponent extends React.Component {
         return (
             <tr>
                 <td>
+                    <i className="fa fa-file-text-o" aria-hidden="true"/>
                     {
                         this.state.editing === true &&
                         <input
@@ -42,8 +43,8 @@ class CourseRowComponent extends React.Component {
                         <label>{this.state.course.title}</label>
                     }
                 </td>
-                <td>{this.props.course.owner}</td>
-                <td>{this.props.course.modified}</td>
+                <td >{this.props.course.owner}</td>
+                <td className="d-none d-lg-block">{this.props.course.modified}</td>
                 <td>
                     <i className="fa fa-2x fa-trash" onClick={() => this.props.deleteCourse(this.props.course)}>
                     </i>
