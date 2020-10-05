@@ -1,4 +1,5 @@
 import React from "react";
+import {updateCourse} from "../services/CourseService";
 
 class CourseGridComponent extends React.Component {
     state = {
@@ -13,15 +14,17 @@ class CourseGridComponent extends React.Component {
 
     render() {
         return (
-            <div className="card" styles={{width: '18rem'}}>
-                <img className="card-img-top"
-                     src="https://picsum.photos/300/200"/> <div className="card-body">
-                <h5>{this.state.course.title}</h5>
-                <p>{this.state.course.owner}</p>
-                <p>{this.state.course.modified}</p>
-            </div></div>
-        );
-    }
+                <td>
+                    <div className="card" styles={{width: '5rem'}}>
+                        <img src="https://picsum.photos/300/200"/>
+                        <div className="card-body">
+                            <h5 className="card-title">{this.state.course.title}</h5>
+                            <p className="card-text">Modified {this.state.course.modified}</p>
+                            <a href="#" className="fa fa-list-ol">More...</a>
+                        </div>
+                    </div>
+                </td>
+        )}
 }
 
 export default CourseGridComponent

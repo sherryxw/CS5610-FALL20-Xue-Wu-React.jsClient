@@ -1,9 +1,9 @@
 import React from "react";
 import CourseRowComponent from "./CourseRowComponent";
+import CourseGridComponent from "./CourseGridComponent";
 import "./CourseList.css"
 import {findAllCourses, updateCourse, deleteCourse, createCourse} from "../services/CourseService";
-import "./CourseGridComponent"
-import CourseGridComponent from "./CourseGridComponent";
+
 
 class CourseListComponent extends React.Component {
 
@@ -25,16 +25,20 @@ class CourseListComponent extends React.Component {
     }
 
     changeView = () => {
-        if (this.state.listView === true) {
+        {
+            this.state.listView === true &&
             this.setState({
                 listView: false
             })
         }
-        else {
+        {
+            this.state.listView === false &&
             this.setState({
                 listView: true
             })
         }
+
+
     }
 
     deleteCourse = (course) => {
@@ -83,60 +87,62 @@ class CourseListComponent extends React.Component {
                 <div className="form-group row">
                     <h1 class="wbdv-sticky-header">
                         <a href={"#"} className="fa fa-bars" aria-hidden="true"/>
-                        <span className="mobile-hide">Course Manager</span>
-                        <input placeholder={"New Course"} type={"text"} className=".wbdv-new-course "
+                        <span className="mobile-hide course-mag">Course Manager</span>
+                        <input placeholder={"New Course"} type={"text"} className="wbdv-new-course"
                                onChange={this.updateTitle}/>
-                        <i className="fa fa-plus-circle pull-right .wbdv-add-course-button" aria-hidden={"true"}
+                        <span className="fa fa-plus-circle pull-right wbdv-add-course-button" aria-hidden={"true"}
                            onClick={this.addCourse}/>
+                        <span className="fa fa-plus-circle pull-right wbdv-sticky-add-course-button" aria-hidden={"true"}/>
                     </h1>
                 </div>
-
-
-                <table className="table">
-                    <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>
-                            <span className="d-none d-sm-block">Owned by</span></th>
-                        <th>
-                            <span className="d-none d-lg-block">Last modified</span>
-                        </th>
-                        <th>
-                            <button><i className="fa fa-th .wbdv-grid-layout" aria-hidden="true"
-                                       onClick={this.changeView}/></button>
-                            <button><i className="fa fa-list-ol" aria-hidden="true"
-                                       onClick={this.changeView}/></button>
-                            <button href="#"><i className="fa fa-sort-alpha-asc wbdv-sort" aria-hidden="true"/></button>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
+                {
+                    <table className="table">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>
+                                <span className="d-none d-sm-block">Owned by</span></th>
+                            <th>
+                                <span className="d-none d-lg-block">Last modified</span>
+                            </th>
+                            <th>
+                                <button><i className="fa fa-th wbdv-grid-layout" aria-hidden="true"
+                                           onClick={this.changeView}/></button>
+                                <button><i className="fa fa-list-ol" aria-hidden="true"
+                                           onClick={this.changeView}/></button>
+                                <button href="#"><i className="fa fa-sort-alpha-asc wbdv-sort" aria-hidden="true"/></button>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         {
-                            this.state.listView === true &&
-                            this.state.courses.map(course =>
-                                <CourseRowComponent
-                                    key={course._id}
-                                    courseBeingEdited={this.state.courseBeingEdited}
-                                    editCourse={this.editCourse}
-                                    deleteCourse={this.deleteCourse}
-                                    course={course}/>
+                                this.state.courses.map(course => {
+                                    if (this.state.listView)
+                                        return (
+                                            <CourseRowComponent
+                                                key={course._id}
+                                                courseBeingEdited={this.state.courseBeingEdited}
+                                                editCourse={this.editCourse}
+                                            deleteCourse={this.deleteCourse}
+                                            course={course}/>)
+                                    if (!this.state.listView)
+                                        return (
+                                            <tr className="col-3">
+                                                <CourseGridComponent
+                                                    key={course._id}
+                                                    courseBeingEdited={this.state.courseBeingEdited}
+                                                    editCourse={this.editCourse}
+                                                    deleteCourse={this.deleteCourse}
+                                                    course={course}/>
+                                            </tr>
+                                        )
+                                }
                             )
                         }
-                        {
-                            this.state.view === false &&
-                            this.state.course.map(course =>
-                                <CourseGridComponent
-                                    key={course._id}
-                                    courseBeingEdited={this.state.courseBeingEdited}
-                                    editCourse={this.editCourse}
-                                    deleteCourse={this.deleteCourse}
-                                    course={course}/>
-                            )
-                        }
+                        </tbody>
+                    </table>
+                }
 
-
-                    </tbody>
-                </table>
             </div>
         );
     }

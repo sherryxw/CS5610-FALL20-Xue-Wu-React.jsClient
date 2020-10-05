@@ -8,6 +8,7 @@ class CourseRowComponent extends React.Component {
         course: this.props.course
     }
 
+    // eslint-disable-next-line no-useless-constructor
     constructor(props) {
         super(props)
     }
@@ -22,7 +23,6 @@ class CourseRowComponent extends React.Component {
     }
 
     updateCourse = () => {
-        debugger
         this.setState({editing: false})
         updateCourse(this.state.course._id, this.state.course)
     }
