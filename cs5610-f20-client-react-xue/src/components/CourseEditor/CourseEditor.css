@@ -1,0 +1,71 @@
+.wbdv-close {
+    color: black;
+}
+
+.wbdv-sticky-button {
+    color: red;
+}
+
+.wbdv-light-grey-border {
+    border: 1px solid lightgray;
+    padding: 10px;
+}
+
+.btn-save {
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.wbdv-module-item-title {
+    border-color: gray;
+    background: gray;
+    color: white;
+    height: 50px;
+    margin: 0px 20px 10px -20px;
+}
+
+.wbdv-module-list {
+    background-color: black;
+    margin-bottom: 40px;
+    padding-top: 30px;
+}
+
+.wbdv-module-item-add-btn {
+    color: white;
+}
+
+.wbdv-lesson-add-btn {
+    color: white;
+}
+
+.wbdv-course-title {
+    background-color: gray;
+    color: white;
+}
+
+.tab-info {
+    color: white;
+}
+
+.wbdv-topic-pill {
+    color: white;
+    background-color: gray;
+    margin-right: 20px;
+    margin-top: 10px;
+    padding-bottom: 16px;
+}
+
+
+.btn-up {
+    margin-left: 200px;
+}
+
+.pre {
+    display: inline;
+    font-size: larger;
+    color: black;
+}
+
+.frame-border {
+    border-color: black;
+}

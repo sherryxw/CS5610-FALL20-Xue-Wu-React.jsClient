@@ -3,6 +3,8 @@ import CourseRowComponent from "./CourseRowComponent";
 import CourseGridComponent from "./CourseGridComponent";
 import "./CourseList.css"
 import {findAllCourses, updateCourse, deleteCourse, createCourse} from "../services/CourseService";
+import CourseTableComponent from "./CourseTableComponent";
+
 
 
 class CourseListComponent extends React.Component {
@@ -10,7 +12,6 @@ class CourseListComponent extends React.Component {
     state = {
         courses: [],
         courseBeingEdited: {},
-        courseTitle: "Some Course",
         course: this.props.course,
         listView: true
     }
@@ -81,6 +82,11 @@ class CourseListComponent extends React.Component {
         })
     }
 
+    updateCourseToServer = () => {
+        updateCourse(this.state.course._id, this.state.course)
+            .then(this.setState({editing: false}))
+    }
+
     render() {
         return (
             <div>
@@ -114,35 +120,21 @@ class CourseListComponent extends React.Component {
                             </th>
                         </tr>
                         </thead>
-                        <tbody>
                         {
-                                this.state.courses.map(course => {
-                                    if (this.state.listView)
-                                        return (
-                                            <CourseRowComponent
-                                                key={course._id}
-                                                courseBeingEdited={this.state.courseBeingEdited}
-                                                editCourse={this.editCourse}
-                                                deleteCourse={this.deleteCourse}
-                                                course={course}/>)
-                                    if (!this.state.listView)
-                                        return (
-                                            <tr className="col-3">
-                                                <CourseGridComponent
-                                                    key={course._id}
-                                                    courseBeingEdited={this.state.courseBeingEdited}
-                                                    editCourse={this.editCourse}
-                                                    deleteCourse={this.deleteCourse}
-                                                    course={course}/>
-                                            </tr>
-                                        )
-                                }
-                            )
+                            this.state.listView &&
+                            <CourseTableComponent
+                                deleteCourse={this.deleteCourse}
+                                courses={this.state.courses}/>
                         }
-                        </tbody>
                     </table>
                 }
-
+                {
+                    !this.state.listView &&
+                    <CourseGridComponent
+                            deleteCourse={this.deleteCourse}
+                            courses={this.state.courses}
+                            updateCourseToServer={this.updateCourseToServer}/>
+                }
             </div>
         );
     }

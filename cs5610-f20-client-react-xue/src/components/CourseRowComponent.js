@@ -5,7 +5,6 @@ import {Link} from "react-router-dom";
 class CourseRowComponent extends React.Component {
     state = {
         editing: false,
-        // courseTitle: "Some Course",
         course: this.props.course
     }
 

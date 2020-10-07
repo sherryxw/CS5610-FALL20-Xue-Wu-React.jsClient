@@ -16,10 +16,10 @@
 }
 .wbdv-sticky-header {
     position: fixed;
-    top: 0px;
+    top: 0;
     background-color: lightblue;
-    left: 0px;
-    right: 0px;
+    left: 0;
+    right: 0;
     padding-top: 10px;
     padding-bottom: 10px;
 }
