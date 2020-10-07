@@ -123,8 +123,8 @@ class CourseListComponent extends React.Component {
                                                 key={course._id}
                                                 courseBeingEdited={this.state.courseBeingEdited}
                                                 editCourse={this.editCourse}
-                                            deleteCourse={this.deleteCourse}
-                                            course={course}/>)
+                                                deleteCourse={this.deleteCourse}
+                                                course={course}/>)
                                     if (!this.state.listView)
                                         return (
                                             <tr className="col-3">

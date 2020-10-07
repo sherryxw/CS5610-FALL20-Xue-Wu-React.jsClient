@@ -32,3 +32,6 @@ export const updateCourse = (courseId, newCourse) =>
             'content-type': 'application/json'
         }
     })
+
+
+

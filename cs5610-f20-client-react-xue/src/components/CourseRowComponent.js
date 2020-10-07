@@ -1,10 +1,11 @@
 import React from "react";
 import {updateCourse} from "../services/CourseService";
+import {Link} from "react-router-dom";
 
 class CourseRowComponent extends React.Component {
     state = {
         editing: false,
-        courseTitle: "Some Course",
+        // courseTitle: "Some Course",
         course: this.props.course
     }
 
@@ -15,16 +16,14 @@ class CourseRowComponent extends React.Component {
 
     updateTitle = (event) => {
         const newTitle = event.target.value
-        const course = { ...this.state.course }
-        course.title = newTitle
-        this.setState({
-            course: course
-        })
+        this.setState(prevState => ({
+            course: {...this.state.course, title: newTitle}
+        }))
     }
 
-    updateCourse = () => {
-        this.setState({editing: false})
+    updateCourseToServer = () => {
         updateCourse(this.state.course._id, this.state.course)
+            .then(this.setState({editing: false}))
     }
 
     render() {
@@ -33,14 +32,15 @@ class CourseRowComponent extends React.Component {
                 <td>
                     <i className="fa fa-file-text-o" aria-hidden="true"/>
                     {
-                        this.state.editing === true &&
+                        this.state.editing &&
                         <input
+                            // className="form-control"
                             onChange={this.updateTitle}
                             value={this.state.course.title}/>
                     }
                     {
-                        this.state.editing === false &&
-                        <label>{this.state.course.title}</label>
+                        !this.state.editing &&
+                        <Link to={`/edit/${this.state.course._id}`}>{this.state.course.title}</Link>
                     }
                 </td>
                 <td>
@@ -53,7 +53,7 @@ class CourseRowComponent extends React.Component {
                     </i>
                     {
                         this.state.editing &&
-                        <i className="fa fa-2x fa-check" onClick={this.updateCourse}/>
+                        <i className="fa fa-2x fa-check" onClick={this.updateCourseToServer}/>
                     }
                     {
                         !this.state.editing &&
