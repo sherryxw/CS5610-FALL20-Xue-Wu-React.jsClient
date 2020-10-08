@@ -17,20 +17,18 @@ export default class CourseManagerContainer extends React.Component {
         return (
             <BrowserRouter>
                 <div className="container">
-                    <Link to="/Login">Login</Link>
-                    <Link to="/Register">Register</Link>
-                    <Link to="/Profile">Profile</Link>
-                    <Link to="/CourseListComponent">CourseListComponent</Link>
-                    <Link to="/edit">Editor</Link>
+                    <button><Link to="/Login">Login</Link></button>
+                    <button><Link to="/Register">Register</Link></button>
+                    <button><Link to="/Profile">Profile</Link></button>
+                    <button><Link to="/CourseListComponent">CourseListComponent</Link></button>
+                    <button><Link to="/edit">Editor</Link></button>
                     <Route path="/Login" exact component={Login}/>
                     <Route path="/Register" exact component={Register}/>
                     <Route path="/Profile" exact component={Profile}/>
                     <Route path="/CourseListComponent" exact>
-                        <CourseListComponent courses={this.state.courses}/>
-                    </Route>
+                        <CourseListComponent courses={this.state.courses}/></Route>
                     <Route path="/grid" exact>
-                        <CourseGridComponent instructor="Xue"/>
-                    </Route>
+                        <CourseGridComponent instructor="Xue"/></Route>
                     <Route path="/edit/:courseId"
                            exact
                            component={CourseEditorComponent}/>

@@ -40,11 +40,11 @@ export default  class CourseEditorComponent extends React.Component{
                         <LessonTabs/>
                     </div>
                 </div>
-                <div className="row frame-border">
+                <div className="row">
                     <div className="col-4 wbdv-module-list">
                         <ModuleList/>
                     </div>
-                    <div className="col-8">
+                    <div className="col-8 border-set border border-dark">
                         <TopicPills/>
                         <br/>
                         <div className="d-flex bd-highlight justify-content-end mb-3">
