@@ -1,7 +1,7 @@
 import React from "react";
 import {updateCourse} from "../services/CourseService";
 import {Link} from "react-router-dom";
-import "./CourseList.css"
+import "./CourseComponents.css"
 
 class CourseRowComponent extends React.Component {
     state = {
@@ -74,8 +74,11 @@ class CourseRowComponent extends React.Component {
                     <span className="d-none d-lg-block">{this.props.course.modified}</span>
                 </td>
                 <td>
-                    <i className="fa fa-2x fa-trash" onClick={() => this.props.deleteCourse(this.props.course)}>
-                    </i>
+                    {
+                        !this.state.editing &&
+                        <i className="fa fa-2x fa-trash" onClick={() => this.props.deleteCourse(this.props.course)}/>
+                    }
+
                     {
                         this.state.editing &&
                         <i className="fa fa-2x fa-check" onClick={this.updateCourseToServer}/>

@@ -35,7 +35,7 @@ class CourseCard extends React.Component {
                         {
                             this.state.editing &&
                             <input
-                                // className="form-control"
+                                className="form-control"
                                 onChange={this.updateTitle}
                                 value={this.state.course.title}/>
                         }

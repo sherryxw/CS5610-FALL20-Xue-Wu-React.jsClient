@@ -1,7 +1,7 @@
 import React from "react";
 import CourseRowComponent from "./CourseRowComponent";
 import CourseGridComponent from "./CourseGridComponent";
-import "./CourseList.css"
+import "./CourseComponents.css"
 import {findAllCourses, updateCourse, deleteCourse, createCourse} from "../services/CourseService";
 import CourseTableComponent from "./CourseTableComponent";
 
