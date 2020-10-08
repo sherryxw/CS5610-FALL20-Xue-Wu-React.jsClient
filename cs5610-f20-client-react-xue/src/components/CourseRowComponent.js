@@ -1,11 +1,15 @@
 import React from "react";
 import {updateCourse} from "../services/CourseService";
 import {Link} from "react-router-dom";
+import "./CourseList.css"
 
 class CourseRowComponent extends React.Component {
     state = {
         editing: false,
-        course: this.props.course
+        course: this.props.course,
+        selected: false,
+        background: "white",
+        font: "black"
     }
 
     // eslint-disable-next-line no-useless-constructor
@@ -25,9 +29,31 @@ class CourseRowComponent extends React.Component {
             .then(this.setState({editing: false}))
     }
 
+
+
+    selectedToggle = () => {
+        if (this.state.selected) {
+            this.setState({
+                background: "white",
+                selected: false,
+                font: "black"
+            });
+        } else {
+            this.setState({
+                background: "aliceblue",
+                selected: true,
+                font: "white"
+            });
+        }
+    };
+
+
     render() {
         return (
-            <tr>
+            <tr onClick={this.selectedToggle} style={{
+                background: this.state.background,
+                font: this.state.font
+            }}>
                 <td>
                     <i className="fa fa-file-text-o" aria-hidden="true"/>
                     {

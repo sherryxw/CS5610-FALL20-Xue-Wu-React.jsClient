@@ -112,10 +112,16 @@ class CourseListComponent extends React.Component {
                                 <span className="d-none d-lg-block">Last modified</span>
                             </th>
                             <th>
-                                <button><i className="fa fa-th wbdv-grid-layout" aria-hidden="true"
-                                           onClick={this.changeView}/></button>
-                                <button><i className="fa fa-list-ol" aria-hidden="true"
-                                           onClick={this.changeView}/></button>
+                                {
+                                    this.state.listView &&
+                                    <button><i className="fa fa-th wbdv-grid-layout" aria-hidden="true"
+                                               onClick={this.changeView}/></button>
+                                }
+                                {
+                                    !this.state.listView &&
+                                    <button><i className="fa fa-list-ol" aria-hidden="true"
+                                               onClick={this.changeView}/></button>
+                                }
                                 <button href="#"><i className="fa fa-sort-alpha-asc wbdv-sort" aria-hidden="true"/></button>
                             </th>
                         </tr>
