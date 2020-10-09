@@ -1,6 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css"
-import "./CourseEditor.css"
+import "../../styling/CourseEditor.css"
 
 export default class TopicPills extends React.Component {
     render() {
@@ -9,7 +9,7 @@ export default class TopicPills extends React.Component {
                 <li className="nav-item">
                     <a className="nav-link wbdv-topic-pill" href="#">Topic 1</a></li>
                 <li className="nav-item">
-                    <a className="nav-link active wbdv-topic-pill" href="#">Topic 2</a></li>
+                    <a className="nav-link wbdv-topic-pill" href="#">Topic 2</a></li>
                 <li className="nav-item">
                     <a className="nav-link wbdv-topic-pill" href="#">Topic 3</a></li>
                 <li className="nav-item">

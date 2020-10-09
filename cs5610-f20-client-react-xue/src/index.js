@@ -5,11 +5,11 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "font-awesome/css/font-awesome.css"
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import CourseManagerContainer from "./containers/CourseManagerContainer";
+import CourseManagerComponent from "./components/CourseManagerComponent";
 
 
 ReactDOM.render(
-    <CourseManagerContainer/>,
+    <CourseManagerComponent/>,
     document.getElementById('root')
 );
 

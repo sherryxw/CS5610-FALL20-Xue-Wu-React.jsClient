@@ -1,18 +1,17 @@
 import React from "react";
 import {updateCourse} from "../services/CourseService";
 import {Link} from "react-router-dom";
-import "./CourseComponents.css"
+
 
 class CourseRowComponent extends React.Component {
     state = {
-        editing: false,
         course: this.props.course,
+        editing: false,
         selected: false,
         background: "white",
         font: "black"
     }
 
-    // eslint-disable-next-line no-useless-constructor
     constructor(props) {
         super(props)
     }
@@ -28,7 +27,6 @@ class CourseRowComponent extends React.Component {
         updateCourse(this.state.course._id, this.state.course)
             .then(this.setState({editing: false}))
     }
-
 
 
     selectedToggle = () => {
@@ -69,16 +67,15 @@ class CourseRowComponent extends React.Component {
                     }
                 </td>
                 <td>
-                    <span className="d-none d-sm-block">{this.props.course.owner}</span></td>
+                    <span className="d-none d-sm-block">{this.state.course.owner}</span></td>
                 <td>
-                    <span className="d-none d-lg-block">{this.props.course.modified}</span>
+                    <span className="d-none d-lg-block">{this.state.course.modified}</span>
                 </td>
                 <td>
                     {
                         !this.state.editing &&
-                        <i className="fa fa-2x fa-trash" onClick={() => this.props.deleteCourse(this.props.course)}/>
+                        <i className="fa fa-2x fa-trash" onClick={() => this.props.deleteCourse(this.state.course)}/>
                     }
-
                     {
                         this.state.editing &&
                         <i className="fa fa-2x fa-check" onClick={this.updateCourseToServer}/>

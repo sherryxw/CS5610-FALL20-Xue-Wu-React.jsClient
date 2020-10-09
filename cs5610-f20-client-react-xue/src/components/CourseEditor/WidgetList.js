@@ -9,7 +9,7 @@ export default class WidgetList extends React.Component {
                     <a href="#" class="btn btn-warning btn-up">
                         <i class="fa fa-arrow-up"/>
                     </a>
-                    <a href="#" class="btn btn-warning">
+                    <a href="#" class="btn btn-warning btn-down">
                         <i class="fa fa-arrow-down"/>
                     </a>
                     <select>
@@ -18,7 +18,7 @@ export default class WidgetList extends React.Component {
                         <option>Slides</option>
                         <option>List</option>
                     </select>
-                    <a href="#" class="btn btn-danger">
+                    <a href="#" class="btn btn-danger btn-trash">
                         <i class="fa fa-trash"/>
                     </a>
                 </h3>

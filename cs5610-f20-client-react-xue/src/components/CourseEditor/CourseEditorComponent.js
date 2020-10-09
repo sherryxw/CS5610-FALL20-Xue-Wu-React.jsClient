@@ -1,7 +1,7 @@
 import React from "react";
 import {findCourseById} from "../../services/CourseService";
 import {Link} from "react-router-dom";
-import "./CourseEditor.css"
+import "../../styling/CourseEditor.css"
 
 import ModuleList from "./ModuleList";
 import LessonTabs from "./LessonTabs";
@@ -20,8 +20,8 @@ export default  class CourseEditorComponent extends React.Component{
 
     componentDidMount() {
         findCourseById(this.props.match.params.courseId)
-            .then(actualCoures => this.setState({
-                course: actualCoures
+            .then(actualCourse => this.setState({
+                course: actualCourse
             }))
     }
 
@@ -31,8 +31,8 @@ export default  class CourseEditorComponent extends React.Component{
             <div className="container">
                 <div className="row wbdv-course-title">
                     <div className="col-4">
-                        <h2><Link to="/CourseListComponent"
-                                  className="fa fa-times pull-left wbdv-course-editor wbdv-close"/>
+                        <h2><Link to="/"
+                                  className="fa fa-times pull-left wbdv-close"/>
                             <span>{this.state.course.title} - WebDev</span>
                         </h2>
                     </div>

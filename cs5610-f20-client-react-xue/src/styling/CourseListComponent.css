@@ -1,0 +1,77 @@
+body {
+    padding-top: 90px;
+}
+
+.wbdv-sticky-header {
+    position: fixed;
+    top: 0;
+    background-color: lightblue;
+    left: 0;
+    right: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+@media only screen and (max-width: 1000px) {
+    .mobile-hide{
+        display: none;
+    }
+}
+
+
+.course-mag {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+.wbdv-new-course {
+    background-color: aliceblue;
+    font-size: smaller;
+    width: 50%;
+    font-style: italic;
+    border:0;
+}
+
+.wbdv-add-course-button {
+    color: red;
+    margin-left: 20px;
+}
+
+.wbdv-sticky-add-course-button {
+    color: red;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+
+}
+
+.wbdv-grid-layout {
+    color: black;
+}
+
+.wbdv-list-layout {
+    color: black;
+}
+
+
+.wbdv-sort {
+    color: black;
+}
+
+.wbdv-hamburger {
+    padding-left: 20px;
+    padding-right: 20px;
+    color: black;
+}
+
+.wbdv-add-course {
+    padding-right: 140px;
+}
+
+
+.nav-link {
+    display: contents;
+    color: black;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {updateCourse} from "../services/CourseService";
 
+
 class CourseCard extends React.Component {
     state = {
         editing: false,
