@@ -12,7 +12,8 @@ class CourseListComponent extends React.Component {
         courses: [],
         courseBeingEdited: {},
         course: this.props.course,
-        listView: true
+        listView: true,
+        inputCourseTitle: false
     }
 
     componentDidMount() {
@@ -50,18 +51,30 @@ class CourseListComponent extends React.Component {
     }
 
     addCourse = () => {
-        const newCourse = {
-            title: this.state.course.title,
-            owner: "me",
-            modified: (new Date()).toDateString()
+        let newCourse;
+        if (this.state.inputCourseTitle) {
+            newCourse = {
+                title: this.state.course.title,
+                owner: "me",
+                modified: (new Date()).toDateString()
+            }
         }
-
+        else {
+            newCourse = {
+                title: "New Course",
+                owner: "me",
+                modified: (new Date()).toDateString()
+            }
+        }
         createCourse(newCourse)
             .then(actualCourse => this.setState(prevState => ({
                 courses: [
                     ...prevState.courses, actualCourse
                 ]
             })))
+        this.setState({
+            inputCourseTitle: false
+        })
     }
 
     editCourse = (course) => {
@@ -75,7 +88,8 @@ class CourseListComponent extends React.Component {
         const course = { ...this.state.course }
         course.title = newTitle
         this.setState({
-            course: course
+            course: course,
+            inputCourseTitle: true
         })
     }
 
@@ -88,7 +102,7 @@ class CourseListComponent extends React.Component {
                         <a href={"#"} className="fa fa-bars wbdv-hamburger" aria-hidden="true"/>
                         <span className="mobile-hide course-mag">Course Manager</span>
                         <input placeholder={"New Course"} type={"text"} className="wbdv-new-course"
-                               onChange={this.updateTitle}/>
+                        onChange={this.updateTitle}/>
                         <span className="fa fa-plus-circle wbdv-add-course-button" aria-hidden={"true"}
                            onClick={this.addCourse}/>
                         <span className="fa fa-plus-circle pull-right wbdv-sticky-add-course-button" aria-hidden={"true"}/>

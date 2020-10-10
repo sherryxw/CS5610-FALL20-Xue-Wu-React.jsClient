@@ -16,18 +16,20 @@
     margin-top: 10px;
 }
 
-
-.wbdv-module-item-style {
-    background-color: gray !important;
-    color: white;
-    margin-bottom: 10px;
-    margin-left: -35px;
-}
 .wbdv-module-list {
     background-color: black;
     margin-bottom: 40px;
     padding-top: 30px;
 }
+
+.wbdv-module-item-style {
+
+    background-color: gray !important;
+    color: white;
+    margin-bottom: 10px;
+    margin-left: -35px;
+}
+
 
 .wbdv-module-item-add-btn {
     color: white;
@@ -86,3 +88,6 @@
     margin-left: 10px;
 }
 
+.card-pos {
+    position: inherit !important;
+}

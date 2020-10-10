@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {updateCourse} from "../services/CourseService";
-
+import "../styling/CourseEditor.css"
 
 class CourseCard extends React.Component {
     state = {
@@ -28,7 +28,7 @@ class CourseCard extends React.Component {
 
     render() {
         return (
-            <div className="card col-sm-6 col-md-4 col-lg-3 col-xl-2 col-12 pl-2">
+            <div className="card col-sm-6 col-md-4 col-lg-3 col-xl-2 col-12 pl-2 card-pos">
                 <img className="card-img-bottom" src="https://picsum.photos/300/200"/>
                 <div className="card-body">
                     <h5 className="card-title">
