@@ -89,5 +89,6 @@
 }
 
 .card-pos {
-    position: inherit !important;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }

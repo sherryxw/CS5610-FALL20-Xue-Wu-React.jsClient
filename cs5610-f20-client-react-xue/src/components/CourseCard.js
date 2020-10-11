@@ -29,7 +29,8 @@ class CourseCard extends React.Component {
     render() {
         return (
             <div className="card col-sm-6 col-md-4 col-lg-3 col-xl-2 col-12 pl-2 card-pos">
-                <img className="card-img-bottom" src="https://picsum.photos/300/200"/>
+                <img className="card-img-bottom"
+                     src="https://img.resume.com/examples/new/customer-service-two-year-exp.jpeg"/>
                 <div className="card-body">
                     <h5 className="card-title">
                         <i className="fa fa-file-text-o" aria-hidden="true"/>
