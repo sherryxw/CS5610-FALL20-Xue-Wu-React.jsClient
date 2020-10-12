@@ -1,7 +1,7 @@
 import React from "react";
 import {findCourseById} from "../../services/CourseService";
 import {Link} from "react-router-dom";
-import "../../styling/CourseEditor.css"
+
 
 import ModuleList from "./ModuleList";
 import LessonTabs from "./LessonTabs";

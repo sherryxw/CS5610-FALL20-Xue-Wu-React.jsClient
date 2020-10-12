@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styling/CourseEditor.css"
+
 
 export default class ModuleList extends React.Component {
     render() {
@@ -9,7 +9,7 @@ export default class ModuleList extends React.Component {
                     <i className="fa fa-times pull-right wbdv-module-item-delete-btn"/></li>
                 <li className="list-group-item wbdv-module-item-style">Module 2 -React
                     <i className="fa fa-times pull-right wbdv-module-item-delete-btn"/></li>
-                <li className="list-group-item wbdv-module-item-style">Module 3 - Redux
+                <li className="list-group-item active wbdv-module-item-style">Module 3 - Redux
                     <i className="fa fa-times pull-right wbdv-module-item-delete-btn"/></li>
                 <li className="list-group-item wbdv-module-item-style">Module 4 - Native
                     <i className="fa fa-times pull-right wbdv-module-item-delete-btn"/></li>

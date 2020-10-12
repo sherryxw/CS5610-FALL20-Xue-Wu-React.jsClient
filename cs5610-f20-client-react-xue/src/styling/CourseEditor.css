@@ -2,6 +2,11 @@
     color: black;
 }
 
+.wbdv-course-title {
+    background-color: gray;
+    color: white;
+}
+
 .wbdv-sticky-button {
     color: red;
 }
@@ -16,18 +21,17 @@
     margin-top: 10px;
 }
 
+.list-group-item {
+    border-color: gray;
+    background: gray;
+    color: white;
+    margin: 10px 20px 10px -20px;
+}
+
 .wbdv-module-list {
     background-color: black;
     margin-bottom: 40px;
     padding-top: 30px;
-}
-
-.wbdv-module-item-style {
-
-    background-color: gray !important;
-    color: white;
-    margin-bottom: 10px;
-    margin-left: -35px;
 }
 
 
@@ -40,14 +44,19 @@
     margin-top: 8px
 }
 
-.wbdv-course-title {
+.tabs-border {
+    border-bottom: 0;
+    border-color: gray !important;
+}
+
+
+.wbdv-lesson-tabs {
     background-color: gray;
     color: white;
 }
 
-.tabs-border {
-    border-bottom: 0;
-    border-color: gray !important;
+.tab-info {
+    color: white;
 }
 
 .wbdv-topic-pill {
@@ -60,12 +69,16 @@
 
 
 .btn-up {
-    margin-left: 160px;
-    margin-right: 10px;
+    margin-left: 150px;
 }
 
 .btn-down {
+    margin-left: 10px;
     margin-right: 10px;
+}
+
+.btn-trash {
+    margin-left: 10px;
 }
 
 .pre {
@@ -77,15 +90,6 @@
 .border-set {
     padding-bottom: 10px;
     margin-bottom: 40px;
-}
-
-.nav-link {
-    display: contents;
-    color: black;
-}
-
-.btn-trash {
-    margin-left: 10px;
 }
 
 .card-pos {
