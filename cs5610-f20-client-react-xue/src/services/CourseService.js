@@ -31,7 +31,7 @@ export const updateCourse = (courseId, newCourse) =>
         headers: {
             'content-type': 'application/json'
         }
-    })
+    }).then(response => response.json())
 
 
 

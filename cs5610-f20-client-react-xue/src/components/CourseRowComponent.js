@@ -4,16 +4,16 @@ import {Link} from "react-router-dom";
 
 
 class CourseRowComponent extends React.Component {
-    state = {
-        course: this.props.course,
-        editing: false,
-        selected: false,
-        background: "white",
-        font: "black"
-    }
 
     constructor(props) {
         super(props)
+        this.state = {
+            course: this.props.course,
+            editing: false,
+            selected: false,
+            background: "white",
+            font: "black"
+        }
     }
 
     updateTitle = (event) => {

@@ -23,24 +23,27 @@
 
 .list-group-item {
     border-color: gray;
-    background: gray;
+    background: lightgray;
     color: white;
     margin: 10px 20px 10px -20px;
 }
 
 .wbdv-module-list {
-    background-color: black;
     margin-bottom: 40px;
     padding-top: 30px;
+    background-color: black;
 }
 
+.module-plus {
+    color: white
+}
 
 .wbdv-module-item-add-btn {
     color: white;
 }
 
 .wbdv-lesson-add-btn {
-    color: white;
+    color: darkred;
     margin-top: 8px
 }
 

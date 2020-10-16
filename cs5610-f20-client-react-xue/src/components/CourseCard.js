@@ -4,14 +4,13 @@ import {updateCourse} from "../services/CourseService";
 import "../styling/CourseEditor.css"
 
 class CourseCard extends React.Component {
-    state = {
-        editing: false,
-        course: this.props.course
-    }
 
-    // eslint-disable-next-line no-useless-constructor
     constructor(props) {
         super(props)
+        this.state = {
+            editing: false,
+            course: this.props.course
+        }
     }
 
     updateTitle = (event) => {

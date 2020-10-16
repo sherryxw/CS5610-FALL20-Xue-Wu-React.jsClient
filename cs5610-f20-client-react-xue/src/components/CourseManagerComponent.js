@@ -155,7 +155,7 @@ export default class CourseManagerComponent extends React.Component {
                             }
                         </div>
                     </Route>
-                    <Route path="/edit/:courseId"
+                    <Route path={["/edit/:courseId", "/edit/:courseId/modules/:moduleId"]}
                            exact
                            component={CourseEditorComponent}/>
                 </div>

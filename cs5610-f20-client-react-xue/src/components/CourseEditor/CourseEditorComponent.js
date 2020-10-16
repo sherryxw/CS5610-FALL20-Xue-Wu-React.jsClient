@@ -1,29 +1,35 @@
 import React from "react";
 import {findCourseById} from "../../services/CourseService";
 import {Link} from "react-router-dom";
-
-
-import ModuleList from "./ModuleList";
-import LessonTabs from "./LessonTabs";
+import LessonTabsComponent from "./LessonTabsComponent";
 import TopicPills from "./TopicPills";
-import WidgetList from "./WidgetList";
+import WidgetListContainer from "../../containers/WidgetListContainer";
+import ModuleListComponent from "./ModuleListComponent";
+import {connect} from "react-redux";
+import LessonService from "../../services/LessonService";
+import ModuleService from "../../services/ModuleService";
 
 
-export default  class CourseEditorComponent extends React.Component{
+class CourseEditorComponent extends React.Component {
 
-    state = {
-        course: {
-            _id: "",
-            title: ""
+    //fetching the course info from url, copy in the local state
+    componentDidMount() {
+        const courseId = this.props.match.params.courseId
+        const moduleId = this.props.match.params.moduleId
+        this.props.findCourseById(courseId)
+        this.props.findModulesForCourse(courseId)
+        if(moduleId) {
+            this.props.findLessonsForModule(moduleId)
         }
     }
 
-    componentDidMount() {
-        findCourseById(this.props.match.params.courseId)
-            .then(actualCourse => this.setState({
-                course: actualCourse
-            }))
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        const moduleId = this.props.match.params.moduleId
+        if(moduleId !== prevProps.match.params.moduleId) {
+            this.props.findLessonsForModule(moduleId)
+        }
     }
+
 
 
     render() {
@@ -33,16 +39,16 @@ export default  class CourseEditorComponent extends React.Component{
                     <div className="col-4">
                         <h2><Link to="/"
                                   className="fa fa-times pull-left wbdv-close"/>
-                            <span>{this.state.course.title} - WebDev</span>
+                            <span>{this.props.course.title} - WebDev</span>
                         </h2>
                     </div>
                     <div className="col-8">
-                        <LessonTabs/>
+                        <LessonTabsComponent/>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-4 wbdv-module-list">
-                        <ModuleList/>
+                        <ModuleListComponent/>
                     </div>
                     <div className="col-8 border-set border border-dark">
                         <TopicPills/>
@@ -58,7 +64,7 @@ export default  class CourseEditorComponent extends React.Component{
                             </div>
                         </div>
                         <br/>
-                        <WidgetList/>
+                        <WidgetListContainer/>
                         <i className="fa fa-2x fa-plus-square pull-right wbdv-sticky-button" aria-hidden="true"/>
                     </div>
                 </div>
@@ -66,6 +72,29 @@ export default  class CourseEditorComponent extends React.Component{
         )
     }
 
-
 }
 
+const stateToPropertyMapper = (state) => ({
+    course: state.courseReducer.course
+})
+
+
+const propertyToDispatchMapper = (dispatch) => ({
+    //reading from url -> go to the server -> set courses to be actual course, dispatch to the reducer
+    findCourseById: (courseId) => findCourseById(courseId)
+        .then(actualCourse => dispatch({
+            type: "SET_COURSES",
+            course: actualCourse
+        })),
+    findModulesForCourse: (courseId) => ModuleService.findModulesForCourse(courseId)
+        .then(actualModules => dispatch({
+            type: "FIND_MODULES_FOR_COURSE",
+            modules: actualModules
+        })),
+    findLessonsForModule: (moduleId) => LessonService.findLessonsForModule(moduleId)
+        .then(lessons => dispatch({
+            type: "FIND_LESSONS_FOR_MODULE", lessons, moduleId
+        }))
+})
+
+export default connect(stateToPropertyMapper, propertyToDispatchMapper)(CourseEditorComponent)
