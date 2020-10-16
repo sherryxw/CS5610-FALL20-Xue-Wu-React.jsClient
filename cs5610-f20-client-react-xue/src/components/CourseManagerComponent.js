@@ -14,7 +14,7 @@ export default class CourseManagerComponent extends React.Component {
         courses: [],
         courseBeingEdited: {},
         course: this.props.course,
-        listView: true,
+        layout: "table",
         inputCourseTitle: false
     }
 
@@ -29,15 +29,15 @@ export default class CourseManagerComponent extends React.Component {
 
     changeView = () => {
         {
-            this.state.listView === true &&
+            this.state.layout === "table" &&
             this.setState({
-                listView: false
+                layout: "grid"
             })
         }
         {
-            this.state.listView === false &&
+            this.state.layout === "grid" &&
             this.setState({
-                listView: true
+                layout: "table"
             })
         }
     }
@@ -100,7 +100,7 @@ export default class CourseManagerComponent extends React.Component {
         return (
             <BrowserRouter>
                 <div className="container">
-                    <Route path="/" exact>
+                    <Route path={["/:layout", "/"]} exact>
                         <div className="container">
                             <div className="form-group row">
                                 <h1 className="wbdv-sticky-header">
@@ -125,21 +125,25 @@ export default class CourseManagerComponent extends React.Component {
                                         </th>
                                         <th>
                                             {
-                                                this.state.listView &&
-                                                <button><i className="fa fa-th wbdv-grid-layout" aria-hidden="true"
-                                                           onClick={this.changeView}/></button>
+                                                this.state.layout === "table" &&
+                                                    <Link to="/grid">
+                                                        <button><i className="fa fa-th wbdv-grid-layout" aria-hidden="true"
+                                                                   onClick={this.changeView}/></button>
+                                                    </Link>
                                             }
                                             {
-                                                !this.state.listView &&
-                                                <button><i className="fa fa-list-ol wbdv-list-layout" aria-hidden="true"
-                                                           onClick={this.changeView}/></button>
+                                                this.state.layout === "grid" &&
+                                                    <Link to="/table">
+                                                        <button><i className="fa fa-list-ol wbdv-list-layout" aria-hidden="true"
+                                                                   onClick={this.changeView}/></button>
+                                                    </Link>
                                             }
                                             <button href="#"><i className="fa fa-sort-alpha-asc wbdv-sort" aria-hidden="true"/></button>
                                         </th>
                                     </tr>
                                     </thead>
                                     {
-                                        this.state.listView &&
+                                        this.state.layout === "table" &&
                                         <CourseTableComponent
                                             deleteCourse={this.deleteCourse}
                                             courses={this.state.courses}/>
@@ -148,7 +152,7 @@ export default class CourseManagerComponent extends React.Component {
                                 </table>
                             }
                             {
-                                !this.state.listView &&
+                                this.state.layout === "grid" &&
                                 <CourseGridComponent
                                     deleteCourse={this.deleteCourse}
                                     courses={this.state.courses}/>
@@ -156,8 +160,9 @@ export default class CourseManagerComponent extends React.Component {
                         </div>
                     </Route>
                     <Route path={["/edit/:courseId", "/edit/:courseId/modules/:moduleId"]}
-                           exact
-                           component={CourseEditorComponent}/>
+                           exact component={CourseEditorComponent}/>
+
+
                 </div>
             </BrowserRouter>
 
