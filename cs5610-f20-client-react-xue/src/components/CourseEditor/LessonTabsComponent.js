@@ -89,7 +89,7 @@ const dispatchToPropertyMapper = (dispatch) => ({
                 title: "New Lesson"
             })
             .then(actualLesson => dispatch({
-                type: "CREATE_LESSON_FOR_MODULE",
+                type: "CREATE_LESSON",
                 lesson: actualLesson
             })),
     updateLessonTitle: (lesson) =>

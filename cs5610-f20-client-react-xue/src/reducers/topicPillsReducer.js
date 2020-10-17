@@ -5,13 +5,13 @@ const initialState = {
 
 const topicPillsReducer = (state=initialState, action) => {
     switch(action.type){
-        case "FIND_PILLS_FOR_LESSON":
+        case "FIND_TOPICS_FOR_LESSON":
             return {
                 ...state,
                 topicPills: action.topicPills,
                 lessonId: action.lessonId
             }
-        case "CREATE_TOPIC_FOR_LESSON":
+        case "CREATE_TOPIC":
             return {
                 ...state,
                 topicPills: [

@@ -16,7 +16,7 @@ const lessonReducer = (state={}, action) => {
                 lessons: action.lessons,
                 moduleId: action.moduleId
             }
-        case "CREATE_LESSON_FOR_MODULE":
+        case "CREATE_LESSON":
             return {
                 ...state,
                 lessons: [

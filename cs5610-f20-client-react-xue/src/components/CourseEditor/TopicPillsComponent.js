@@ -55,7 +55,7 @@ const dispatchToPropertyMapper = (dispatch) => ({
     createTopic: (lessonId) => TopicPillsService.createTopic(lessonId, {
         title: "New Topic"
     }).then(actualTopic => dispatch({
-        type: "CREATE_TOPIC_FOR_LESSON",
+        type: "CREATE_TOPIC",
         topicPills: actualTopic
     })),
     deleteTopicPills: (topicPillId) => TopicPillsService.deleteTopic(topicPillId)
