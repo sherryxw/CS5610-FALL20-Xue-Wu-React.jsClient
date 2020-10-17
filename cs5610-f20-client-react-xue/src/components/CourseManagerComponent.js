@@ -147,7 +147,6 @@ export default class CourseManagerComponent extends React.Component {
                                         <CourseTableComponent
                                             deleteCourse={this.deleteCourse}
                                             courses={this.state.courses}/>
-
                                     }
                                 </table>
                             }
@@ -159,10 +158,9 @@ export default class CourseManagerComponent extends React.Component {
                             }
                         </div>
                     </Route>
-                    <Route path={["/edit/:courseId", "/edit/:courseId/modules/:moduleId"]}
+                    <Route path={["/edit/course/:courseId", "/edit/course/:courseId/modules/:moduleId",
+                    "/edit/course/:courseId/modules/:moduleId/lessons/:lessonId"]}
                            exact component={CourseEditorComponent}/>
-
-
                 </div>
             </BrowserRouter>
 

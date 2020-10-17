@@ -42,7 +42,7 @@ class CourseCard extends React.Component {
                         }
                         {
                             !this.state.editing &&
-                            <Link to={`/edit/${this.state.course._id}`}>{this.state.course.title}</Link>
+                            <Link to={`/edit/course/${this.state.course._id}`}>{this.state.course.title}</Link>
                         }
                     </h5>
                     <p className="card-text"> Modified {this.state.course.modified}</p>

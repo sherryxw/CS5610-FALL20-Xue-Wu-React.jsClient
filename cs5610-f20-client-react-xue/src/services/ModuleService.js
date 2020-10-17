@@ -1,20 +1,20 @@
 const moduleUrl = "https://wbdv-generic-server.herokuapp.com/api/10394858392/modules"
 const courseUrl = "https://wbdv-generic-server.herokuapp.com/api/10394858392/courses"
 
-export const createModuleForCourse = (courseId, newModule) =>
+export const createModule = (courseId, module) =>
     fetch(`${courseUrl}/${courseId}/modules`, {
         method: "POST",
-        body: JSON.stringify(newModule),
+        body: JSON.stringify(module),
         headers: {
             "content-type": "application/json"
         }
     })
         .then(response => response.json())
 
-export const updateModule = (moduleId, newModule) =>
+export const updateModule = (moduleId, module) =>
     fetch(`${moduleUrl}/${moduleId}`, {
         method: "PUT",
-        body: JSON.stringify(newModule),
+        body: JSON.stringify(module),
         headers: {
             "content-type": "application/json"
         }
@@ -32,5 +32,5 @@ export const findModulesForCourse = (courseId) =>
         .then(response => response.json())
 
 export default {
-    updateModule, findModulesForCourse, createModuleForCourse, deleteModule
+    updateModule, findModulesForCourse, createModule, deleteModule
 }

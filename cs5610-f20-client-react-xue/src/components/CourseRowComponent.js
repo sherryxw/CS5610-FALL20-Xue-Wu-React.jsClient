@@ -11,8 +11,6 @@ class CourseRowComponent extends React.Component {
             course: this.props.course,
             editing: false,
             selected: false,
-            background: "white",
-            font: "black"
         }
     }
 
@@ -63,7 +61,7 @@ class CourseRowComponent extends React.Component {
                     }
                     {
                         !this.state.editing &&
-                        <Link to={`/edit/${this.state.course._id}`}>{this.state.course.title}</Link>
+                        <Link to={`/edit/course/${this.state.course._id}`}>{this.state.course.title}</Link>
                     }
                 </td>
                 <td>

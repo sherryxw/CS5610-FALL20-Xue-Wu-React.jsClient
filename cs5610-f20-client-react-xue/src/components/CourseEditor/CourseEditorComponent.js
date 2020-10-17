@@ -2,12 +2,13 @@ import React from "react";
 import {findCourseById} from "../../services/CourseService";
 import {Link} from "react-router-dom";
 import LessonTabsComponent from "./LessonTabsComponent";
-import TopicPills from "./TopicPills";
+import TopicPillsComponent from "./TopicPillsComponent";
 import WidgetListContainer from "../../containers/WidgetListContainer";
 import ModuleListComponent from "./ModuleListComponent";
 import {connect} from "react-redux";
 import LessonService from "../../services/LessonService";
 import ModuleService from "../../services/ModuleService";
+import TopicPillsService from "../../services/TopicPillsService";
 
 
 class CourseEditorComponent extends React.Component {
@@ -16,17 +17,29 @@ class CourseEditorComponent extends React.Component {
     componentDidMount() {
         const courseId = this.props.match.params.courseId
         const moduleId = this.props.match.params.moduleId
+        const lessonId = this.props.match.params.lessonId
         this.props.findCourseById(courseId)
         this.props.findModulesForCourse(courseId)
         if(moduleId) {
             this.props.findLessonsForModule(moduleId)
+        }
+        if(lessonId) {
+            this.props.findTopicPillsForLesson(lessonId)
         }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         const moduleId = this.props.match.params.moduleId
         if(moduleId !== prevProps.match.params.moduleId) {
-            this.props.findLessonsForModule(moduleId)
+            if(moduleId){
+                this.props.findLessonsForModule(moduleId)
+            }
+        }
+        const lessonId = this.props.match.params.lessonId
+        if(lessonId !== prevProps.match.params.lessonId) {
+            if(lessonId){
+                this.props.findTopicPillsForLesson(lessonId)
+            }
         }
     }
 
@@ -51,8 +64,8 @@ class CourseEditorComponent extends React.Component {
                         <ModuleListComponent/>
                     </div>
                     <div className="col-8 border-set border border-dark">
-                        <TopicPills/>
-                        <br/>
+                        <TopicPillsComponent/>
+                    <br/>
                         <div className="d-flex bd-highlight justify-content-end mb-3">
                             <div className="d-flex align-items-center">
                                 <span className="d-flex"><button className="btn btn-success btn-sm"
@@ -94,6 +107,10 @@ const propertyToDispatchMapper = (dispatch) => ({
     findLessonsForModule: (moduleId) => LessonService.findLessonsForModule(moduleId)
         .then(lessons => dispatch({
             type: "FIND_LESSONS_FOR_MODULE", lessons, moduleId
+        })),
+    findTopicPillsForLesson: (lessonId) => TopicPillsService.findTopicPillsForLesson(lessonId)
+        .then(topicPills => dispatch({
+            type: "FIND_PILLS_FOR_LESSON", topicPills, lessonId
         }))
 })
 

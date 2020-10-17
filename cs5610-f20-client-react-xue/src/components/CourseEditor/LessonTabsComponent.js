@@ -1,12 +1,14 @@
 import React from "react";
 import {connect} from "react-redux";
-import LessonService, {updateLesson} from "../../services/LessonService";
+import LessonService from "../../services/LessonService";
+import {Link} from "react-router-dom";
 
 const LessonTabs = (
     {
+        course={},
         moduleId,
         lessons=[],
-        createLessonForModule,
+        createLesson,
         deleteLesson,
         updateLessonTitle,
         edit,
@@ -17,11 +19,13 @@ const LessonTabs = (
             {
                 lessons.map(lesson =>
                         <li key={lesson._id} className="nav-item">
-                            <a className="nav-link tab-info">
+                            <div className="nav-link tab-info">
                                 {
                                     !lesson.editing &&
                                         <span>
-                                            {lesson.title}
+                                            <Link to={`/edit/course/${course._id}/modules/${moduleId}/lessons/${lesson._id}`}>
+                                                {lesson.title}
+                                            </Link>
                                             <i onClick={() => edit(lesson)} className="fa fa-pencil pull-right"/>
                                         </span>
                                 }
@@ -37,37 +41,38 @@ const LessonTabs = (
                                             <i onClick={() => deleteLesson(lesson._id)} className="fa fa-times"/>
                                         </span>
                                 }
-                            </a>
+                            </div>
                         </li>
                 )
             }
         </ul>
-        <i onClick={() => createLessonForModule(moduleId)}
+        <i onClick={() => createLesson(moduleId)}
            className="nav-link fa fa-plus wbdv-lesson-add-btn fa-2x pull-right" aria-hidden="true"/>
     </div>
 
 const stateToPropertyMapper = (state) => ({
     lessons: state.lessonReducer.lessons,
-    moduleId: state.lessonReducer.moduleId
+    moduleId: state.lessonReducer.moduleId,
+    course: state.courseReducer.course
 })
 
 const dispatchToPropertyMapper = (dispatch) => ({
     ok: (lesson) =>
-        LessonService.updateLesson({
+        LessonService.updateLesson(lesson._id,{
             ...lesson, editing: false
         }).then(status => dispatch({
             type: "UPDATE_LESSON",
             lesson: {...lesson, editing: false}
         })),
     edit: (lesson) =>
-        LessonService.updateLesson({
+        LessonService.updateLesson(lesson._id, {
             ...lesson, editing: true
         }).then(status => dispatch({
             type: "UPDATE_LESSON",
             lesson: {...lesson, editing: true}
         })),
     updateLesson: (newLesson) =>
-        LessonService.updateLesson(newLesson)
+        LessonService.updateLesson(newLesson._id, newLesson)
             .then(actualLesson => dispatch({
                 type: "UPDATE_LESSON",
                 lesson: actualLesson
@@ -78,8 +83,8 @@ const dispatchToPropertyMapper = (dispatch) => ({
                 type: "DELETE_LESSON",
                 lessonId
             })),
-    createLessonForModule: (moduleId) =>
-        LessonService.createLessonForModule(
+    createLesson: (moduleId) =>
+        LessonService.createLesson(
             moduleId, {
                 title: "New Lesson"
             })

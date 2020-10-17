@@ -22,20 +22,20 @@
 }
 
 .list-group-item {
-    border-color: gray;
-    background: lightgray;
-    color: white;
+    border-color: cornflowerblue;
+    background: whitesmoke;
+    color: black;
     margin: 10px 20px 10px -20px;
 }
 
 .wbdv-module-list {
     margin-bottom: 40px;
     padding-top: 30px;
-    background-color: black;
+    background-color: lightsteelblue;
 }
 
 .module-plus {
-    color: white
+    color: blue;
 }
 
 .wbdv-module-item-add-btn {
@@ -59,15 +59,23 @@
 }
 
 .tab-info {
-    color: white;
+    color: black;
+    background-color: whitesmoke;
+    margin-right: 10px;
+    margin-top: 10px;
 }
 
 .wbdv-topic-pill {
-    color: white;
-    background-color: gray;
+    color: black;
+    background-color: lightgrey;
     margin-right: 20px;
     margin-top: 10px;
     padding-bottom: 16px;
+}
+
+.wbdv-topic-add-btn {
+    color: blue;
+    background-color: white;
 }
 
 

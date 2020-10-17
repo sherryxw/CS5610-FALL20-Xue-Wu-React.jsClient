@@ -5,7 +5,7 @@ export const findLessonsForModule = (moduleId) =>
     fetch(`${moduleUrl}/${moduleId}/lessons`)
         .then(response => response.json())
 
-export const createLessonForModule = (moduleId, lesson) =>
+export const createLesson = (moduleId, lesson) =>
     fetch(`${moduleUrl}/${moduleId}/lessons`, {
         method: "POST",
         body: JSON.stringify(lesson),
@@ -14,15 +14,16 @@ export const createLessonForModule = (moduleId, lesson) =>
         }
     }).then(response => response.json())
 
-export const updateLesson = (lesson) =>
-    fetch(`${lessonUrl}/${lesson._id}`, {
+export const updateLesson = (lessonId, lesson) =>
+    fetch(`${lessonUrl}/${lessonId}`, {
         method: "PUT",
         body: JSON.stringify(lesson),
         headers: {
             "content-type": "application/json"
         }
     }).then(response => response.json())
-export const deleteLesson = lessonId =>
+
+export const deleteLesson = (lessonId) =>
     fetch(`${lessonUrl}/${lessonId}`,{
         method: "DELETE"
     }).then(response => response.json())
@@ -30,7 +31,7 @@ export const deleteLesson = lessonId =>
 
 export default {
     findLessonsForModule,
-    createLessonForModule,
+    createLesson,
     deleteLesson,
     updateLesson
 }

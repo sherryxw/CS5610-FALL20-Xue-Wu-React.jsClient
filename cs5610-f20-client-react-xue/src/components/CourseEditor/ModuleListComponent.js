@@ -13,7 +13,7 @@ const ModuleListComponent = ({course={}, modules=[], deleteModule, createModule,
                         {
                             !module.editing &&
                             <span>
-                                <Link to={`/edit/${course._id}/modules/${module._id}`}>{module.title}</Link>
+                                <Link to={`/edit/course/${course._id}/modules/${module._id}`}>{module.title}</Link>
                                 <i className="fa fa-pencil pull-right" onClick={() => edit(module)}/>
                             </span>
                         }
@@ -41,6 +41,7 @@ const ModuleListComponent = ({course={}, modules=[], deleteModule, createModule,
         </i>
     </div>
 
+
 const propertyToDispatchMapper = (dispatch) => ({
     ok: (module) =>
         moduleService.updateModule(module._id, {
@@ -63,7 +64,7 @@ const propertyToDispatchMapper = (dispatch) => ({
                 module: module
             })),
     createModule: (course) =>
-        moduleService.createModuleForCourse(course._id, {
+        moduleService.createModule(course._id, {
             title: "New Module"
         }).then(actualModule => dispatch({
             type: "CREATE_MODULE",
