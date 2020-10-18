@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import LessonService from "../../services/LessonService";
 import {Link} from "react-router-dom";
 
+let selected_Id = ""
 const LessonTabs = (
     {
         course={},
@@ -19,14 +20,17 @@ const LessonTabs = (
             {
                 lessons.map(lesson =>
                         <li key={lesson._id} className="nav-item">
-                            <div className="nav-link tab-info">
+                            <div className={`nav-link tab-info ${selected_Id === lesson._id ? 'tab-active' : ''}`}>
                                 {
                                     !lesson.editing &&
                                         <span>
-                                            <Link to={`/edit/course/${course._id}/modules/${moduleId}/lessons/${lesson._id}`}>
+                                            <Link to={`/edit/course/${course._id}/modules/${moduleId}/lessons/${lesson._id}`}
+                                                  className="link">
                                                 {lesson.title}
                                             </Link>
-                                            <i onClick={() => edit(lesson)} className="fa fa-pencil pull-right"/>
+                                            <i onClick={() => {
+                                                edit(lesson); selected_Id=lesson._id}}
+                                               className="fa fa-pencil pull-right"/>
                                         </span>
                                 }
                                 {
@@ -37,7 +41,8 @@ const LessonTabs = (
                                                 ...lesson,
                                                 title: event.target.value
                                             })} value={lesson.title}/>
-                                            <i onClick={() => ok(lesson)} className="fa fa-check"/>
+                                            <i onClick={() => {
+                                                ok(lesson); selected_Id=""}} className="fa fa-check"/>
                                             <i onClick={() => deleteLesson(lesson._id)} className="fa fa-times"/>
                                         </span>
                                 }

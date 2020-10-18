@@ -28,6 +28,12 @@
     margin: 10px 20px 10px -20px;
 }
 
+
+.link {
+    color: black;
+}
+
+
 .wbdv-module-list {
     margin-bottom: 40px;
     padding-top: 30px;
@@ -38,7 +44,7 @@
     color: blue;
 }
 
-.wbdv-module-item-add-btn {
+.wbdv-module-item- add-btn {
     color: white;
 }
 
@@ -65,12 +71,15 @@
     margin-top: 10px;
 }
 
+.tab-active {
+    background-color: dodgerblue;
+}
+
 .wbdv-topic-pill {
     color: black;
     background-color: lightgrey;
     margin-right: 20px;
     margin-top: 10px;
-    padding-bottom: 16px;
 }
 
 .wbdv-topic-add-btn {

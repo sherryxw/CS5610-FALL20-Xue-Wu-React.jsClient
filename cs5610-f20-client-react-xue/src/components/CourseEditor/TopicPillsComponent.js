@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import TopicPillsService from "../../services/TopicPillsService";
 import {Link} from "react-router-dom";
 
+let selected_id = ""
 
 const topicPills = ({topicPills=[],
                         course={},
@@ -18,13 +19,16 @@ const topicPills = ({topicPills=[],
         <ul className="nav nav-pills wbdv-topic-pill-list">
             {
                 topicPills.map(topicPill =>
-                    <li className="nav-item" key={topicPill._id}>
+                    <li className={`nav-item ${selected_id === topicPill._id ? 'tab-active' : ''}`} key={topicPill._id}>
                         {
                             !topicPill.editing &&
-                            <span className="nav-link wbdv-topic-pill">
-                                <Link to={`/edit/course/${course._id}/modules/${moduleId}/lessons/${lessonId}/topicPills/${topicPill._id}`}>
+                            <span className={`nav-link wbdv-topic-pill`}>
+                                <Link to={`/edit/course/${course._id}/modules/${moduleId}/lessons/${lessonId}/topicPills/${topicPill._id}`}
+                                      className="link">
                                     {topicPill.title}</Link>
-                                <i className="fa fa-pencil pull-right" onClick={() => edit(topicPill)}/>
+                                <i className="fa fa-pencil pull-right"
+                                   onClick={() => {
+                                       edit(topicPill); selected_id=topicPill._id}}/>
                             </span>
                         }
                         {
@@ -34,8 +38,10 @@ const topicPills = ({topicPills=[],
                                            onChange={(event) => updateTopicTitle({
                                                ...topicPill,
                                                title: event.target.value})}/>
-                                    <i className="fa fa-check" onClick={() => ok(topicPill)}/>
-                                    <i className="fa fa-times" onClick={() => deleteTopicPills(topicPill._id)}/>
+                                    <i className="fa fa-times pull-right" onClick={() => deleteTopicPills(topicPill._id)}/>
+                                    <i className="fa fa-check pull-right" onClick={() => {
+                                        ok(topicPill); selected_id = ""
+                                }}/>
                                 </span>
                         }
 

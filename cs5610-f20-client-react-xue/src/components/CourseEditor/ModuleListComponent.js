@@ -3,18 +3,25 @@ import {connect} from "react-redux";
 import moduleService from "../../services/ModuleService"
 import {Link} from "react-router-dom";
 //initial course as an empty object
+let selected_id = "";
 const ModuleListComponent = ({course={}, modules=[], deleteModule, createModule, updateModule, edit, ok}) =>
     <div>
         <ul className="wbdv-module-item">
             {
                 modules.map(module =>
-                    <li className="list-group-item wbdv-module-item-style"
+                    <li className={`list-group-item wbdv-module-item-style ${selected_id === module._id ? 'active' : ''}`}
                         key={module._id}>
                         {
                             !module.editing &&
                             <span>
-                                <Link to={`/edit/course/${course._id}/modules/${module._id}`}>{module.title}</Link>
-                                <i className="fa fa-pencil pull-right" onClick={() => edit(module)}/>
+                                <Link to={`/edit/course/${course._id}/modules/${module._id}`} className="link">
+                                    {module.title}
+                                </Link>
+                                <i className="fa fa-pencil pull-right"
+                                   onClick={() => {edit(module); selected_id=module._id}
+                                }
+
+                                />
                             </span>
                         }
                         {
@@ -28,7 +35,7 @@ const ModuleListComponent = ({course={}, modules=[], deleteModule, createModule,
                                 <i className="fa fa-trash pull-right"
                                    onClick={() => deleteModule(module)}/>
                                 <i className="fa fa-check pull-right"
-                                         onClick={() => ok(module)}>
+                                         onClick={() => {ok(module); selected_id=""}}>
                                 </i>
                             </span>
                         }
@@ -40,6 +47,8 @@ const ModuleListComponent = ({course={}, modules=[], deleteModule, createModule,
             onClick={() => createModule(course)}>
         </i>
     </div>
+
+
 
 
 const propertyToDispatchMapper = (dispatch) => ({
