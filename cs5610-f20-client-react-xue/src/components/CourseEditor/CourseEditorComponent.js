@@ -30,12 +30,16 @@ class CourseEditorComponent extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         const moduleId = this.props.match.params.moduleId
+        const lessonId = this.props.match.params.lessonId
+
         if(moduleId !== prevProps.match.params.moduleId) {
             if(moduleId){
                 this.props.findLessonsForModule(moduleId)
+                //topic should be empty here
+                this.props.clearTopic("000")
             }
         }
-        const lessonId = this.props.match.params.lessonId
+
         if(lessonId !== prevProps.match.params.lessonId) {
             if(lessonId){
                 this.props.findTopicPillsForLesson(lessonId)
@@ -111,6 +115,10 @@ const propertyToDispatchMapper = (dispatch) => ({
     findTopicPillsForLesson: (lessonId) => TopicPillsService.findTopicPillsForLesson(lessonId)
         .then(topicPills => dispatch({
             type: "FIND_TOPICS_FOR_LESSON", topicPills, lessonId
+        })),
+    clearTopic: (noLessonId) => TopicPillsService.findTopicPillsForLesson(noLessonId)
+        .then(topicPills => dispatch({
+            type: "FIND_TOPICS_FOR_LESSON", topicPills, noLessonId
         }))
 })
 

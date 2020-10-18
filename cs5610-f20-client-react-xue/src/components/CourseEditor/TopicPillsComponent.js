@@ -1,10 +1,13 @@
 import React from "react";
 import {connect} from "react-redux";
 import TopicPillsService from "../../services/TopicPillsService";
+import {Link} from "react-router-dom";
 
 
 const topicPills = ({topicPills=[],
+                        course={},
                         lessonId,
+                        moduleId,
                         createTopic,
                         deleteTopicPills,
                         updateTopicTitle,
@@ -18,7 +21,9 @@ const topicPills = ({topicPills=[],
                     <li className="nav-item" key={topicPill._id}>
                         {
                             !topicPill.editing &&
-                            <span className="nav-link wbdv-topic-pill">{topicPill.title}
+                            <span className="nav-link wbdv-topic-pill">
+                                <Link to={`/edit/course/${course._id}/modules/${moduleId}/lessons/${lessonId}/topicPills/${topicPill._id}`}>
+                                    {topicPill.title}</Link>
                                 <i className="fa fa-pencil pull-right" onClick={() => edit(topicPill)}/>
                             </span>
                         }
@@ -46,6 +51,8 @@ const topicPills = ({topicPills=[],
 const stateToPropertyMapper = (state) => ({
     topicPills: state.topicPillsReducer.topicPills,
     lessonId: state.topicPillsReducer.lessonId,
+    moduleId: state.moduleReducer.moduleId,
+    course: state.courseReducer.course
 })
 
 
