@@ -19,7 +19,7 @@ const ModuleListComponent = ({course={}, modules=[], deleteModule, createModule,
                                 </Link>
                                 <i className="fa fa-pencil pull-right"
                                    onClick={() => {edit(module); selected_id=module._id}
-                                }
+                                   }
 
                                 />
                             </span>
@@ -31,11 +31,11 @@ const ModuleListComponent = ({course={}, modules=[], deleteModule, createModule,
                                     ...module,
                                     title: event.target.value
                                 })}
-                                value={module.title}/>
+                                       value={module.title}/>
                                 <i className="fa fa-trash pull-right"
                                    onClick={() => deleteModule(module)}/>
                                 <i className="fa fa-check pull-right"
-                                         onClick={() => {ok(module); selected_id=""}}>
+                                   onClick={() => {ok(module); selected_id=""}}>
                                 </i>
                             </span>
                         }
@@ -44,7 +44,7 @@ const ModuleListComponent = ({course={}, modules=[], deleteModule, createModule,
             }
         </ul>
         <i className="fa fa-plus fa-2x pull-right module-plus"
-            onClick={() => createModule(course)}>
+           onClick={() => createModule(course)}>
         </i>
     </div>
 
@@ -100,4 +100,3 @@ const stateToPropertyMapper = (state) => ({
 
 //extract the modules from state, parses the state, and then parses the dispatch
 export default connect(stateToPropertyMapper, propertyToDispatchMapper)(ModuleListComponent)
-

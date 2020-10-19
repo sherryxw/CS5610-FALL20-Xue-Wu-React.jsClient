@@ -33,6 +33,10 @@
     color: black;
 }
 
+.select-style {
+    background-color: dodgerblue;
+}
+
 
 .wbdv-module-list {
     margin-bottom: 40px;
@@ -79,7 +83,6 @@
     color: black;
     background-color: lightgrey;
     margin-right: 20px;
-    margin-top: 10px;
 }
 
 .wbdv-topic-add-btn {
