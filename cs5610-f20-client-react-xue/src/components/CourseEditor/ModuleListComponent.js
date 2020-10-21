@@ -4,12 +4,13 @@ import moduleService from "../../services/ModuleService"
 import {Link} from "react-router-dom";
 //initial course as an empty object
 let selected_id = "";
-const ModuleListComponent = ({course={}, modules=[], deleteModule, createModule, updateModule, edit, ok}) =>
+const ModuleListComponent = ({course={}, modules=[], moduleId, deleteModule, createModule, updateModule, edit, ok}) =>
     <div>
         <ul className="wbdv-module-item">
             {
                 modules.map(module =>
-                    <li className={`list-group-item wbdv-module-item-style ${selected_id === module._id ? 'active' : ''}`}
+                    <li className={`list-group-item wbdv-module-item-style 
+                    ${moduleId === module._id || selected_id===module._id ? 'active' : ''}`}
                         key={module._id}>
                         {
                             !module.editing &&
@@ -40,6 +41,7 @@ const ModuleListComponent = ({course={}, modules=[], deleteModule, createModule,
                             </span>
                         }
                     </li>
+
                 )
             }
         </ul>
@@ -84,7 +86,7 @@ const propertyToDispatchMapper = (dispatch) => ({
         dispatch({
             type: "UPDATE_MODULE",
             module: module
-        })
+        }),
     // [option 2]goes to the server
     // moduleService.updateModule(module._id, module)
     //   .then(status => dispatch({
@@ -95,6 +97,7 @@ const propertyToDispatchMapper = (dispatch) => ({
 
 const stateToPropertyMapper = (state) => ({
     modules: state.moduleReducer.modules,
+    moduleId: state.lessonReducer.moduleId,
     course: state.courseReducer.course
 })
 

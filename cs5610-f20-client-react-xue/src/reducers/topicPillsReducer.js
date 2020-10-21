@@ -9,6 +9,7 @@ const topicPillsReducer = (state=initialState, action) => {
             return {
                 ...state,
                 topicPills: action.topicPills,
+                topicPillsId: action.topicPillId,
                 lessonId: action.lessonId
             }
         case "CREATE_TOPIC":
