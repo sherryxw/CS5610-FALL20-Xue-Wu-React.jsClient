@@ -2,11 +2,12 @@ import React from "react";
 import {connect} from "react-redux";
 import TopicPillsService from "../../services/TopicPillsService";
 import {Link} from "react-router-dom";
-
+let selected_id = ""
 const topicPills = ({topicPills=[],
                         course={},
                         lessonId,
                         moduleId,
+                        topicPillsId,
                         createTopic,
                         deleteTopicPills,
                         updateTopicTitle,
@@ -17,7 +18,9 @@ const topicPills = ({topicPills=[],
         <ul className="nav nav-pills wbdv-topic-pill-list">
             {
                 topicPills.map(topicPill =>
-                    <li className={`nav-item ${topicPill.editing ? 'tab-active' : ''}`} key={topicPill._id}>
+                    <li className={`nav-item 
+                    ${ selected_id===topicPill._id || topicPillsId===topicPill._id ? 'tab-active' : ''}`}
+                        key={topicPill._id}>
                         {
                             !topicPill.editing &&
                             <span className={`nav-link wbdv-topic-pill`}>
@@ -25,7 +28,7 @@ const topicPills = ({topicPills=[],
                                     {topicPill.title}
                                 <i className="fa fa-pencil pull-right"
                                    onClick={() => {
-                                       edit(topicPill)}}/>
+                                       edit(topicPill); selected_id=topicPill._id}}/>
                             </span>
                         }
                         {
@@ -37,7 +40,7 @@ const topicPills = ({topicPills=[],
                                                title: event.target.value})}/>
                                     <i className="fa fa-times pull-right" onClick={() => deleteTopicPills(topicPill._id)}/>
                                     <i className="fa fa-check pull-right" onClick={() => {
-                                        ok(topicPill);
+                                        ok(topicPill); selected_id=""
                                 }}/>
                                 </span>
                         }
@@ -53,6 +56,7 @@ const topicPills = ({topicPills=[],
 
 const stateToPropertyMapper = (state) => ({
     topicPills: state.topicPillsReducer.topicPills,
+    topicPillsId: state.widgetReducer.topicPillId,
     lessonId: state.topicPillsReducer.lessonId,
     moduleId: state.moduleReducer.moduleId,
     course: state.courseReducer.course
