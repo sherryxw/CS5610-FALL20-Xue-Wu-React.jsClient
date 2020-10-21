@@ -4,7 +4,6 @@ import moduleService from "../../services/ModuleService"
 import {Link} from "react-router-dom";
 //initial course as an empty object
 let selected_id = "";
-
 const ModuleListComponent = ({course={}, modules=[], moduleId, deleteModule, createModule, updateModule, edit, ok}) =>
     <div>
         <ul className="wbdv-module-item">
