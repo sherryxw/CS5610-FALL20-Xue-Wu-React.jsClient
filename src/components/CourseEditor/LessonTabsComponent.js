@@ -2,7 +2,9 @@ import React from "react";
 import {connect} from "react-redux";
 import LessonService from "../../services/LessonService";
 import {Link} from "react-router-dom";
+
 let selected_id = ""
+
 const LessonTabs = (
     {
         course={},

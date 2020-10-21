@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import TopicPillsService from "../../services/TopicPillsService";
 import {Link} from "react-router-dom";
 let selected_id = ""
+
 const topicPills = ({topicPills=[],
                         course={},
                         lessonId,
