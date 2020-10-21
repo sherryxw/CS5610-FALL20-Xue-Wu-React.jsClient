@@ -1,0 +1,121 @@
+.wbdv-close {
+    color: black;
+}
+
+.wbdv-course-title {
+    background-color: gray;
+    color: white;
+}
+
+.wbdv-sticky-button {
+    color: red;
+}
+
+.wbdv-light-grey-border {
+    border: 1px solid lightgray;
+    padding: 10px;
+}
+
+.btn-save {
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.list-group-item {
+    border-color: cornflowerblue;
+    background: whitesmoke;
+    color: black;
+    margin: 10px 20px 10px -20px;
+}
+
+
+.link {
+    color: black;
+}
+
+.select-style {
+    background-color: dodgerblue;
+}
+
+
+.wbdv-module-list {
+    margin-bottom: 40px;
+    padding-top: 30px;
+    background-color: lightsteelblue;
+}
+
+.module-plus {
+    color: blue;
+}
+
+.wbdv-module-item- add-btn {
+    color: white;
+}
+
+.wbdv-lesson-add-btn {
+    color: darkred;
+    margin-top: 8px
+}
+
+.tabs-border {
+    border-bottom: 0;
+    border-color: gray !important;
+}
+
+
+.wbdv-lesson-tabs {
+    background-color: gray;
+    color: white;
+}
+
+.tab-info {
+    color: black;
+    background-color: whitesmoke;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.tab-active {
+    background-color: dodgerblue;
+}
+
+.wbdv-topic-pill {
+    color: black;
+    background-color: lightgrey;
+    margin-right: 20px;
+}
+
+.wbdv-topic-add-btn {
+    color: blue;
+    background-color: white;
+}
+
+
+.btn-up {
+    margin-left: 150px;
+}
+
+.btn-down {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.btn-trash {
+    margin-left: 10px;
+}
+
+.pre {
+    display: inline;
+    font-size: larger;
+    color: black;
+}
+
+.border-set {
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+}
+
+.card-pos {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
