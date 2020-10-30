@@ -9,70 +9,36 @@ const WidgetList = ({
                         widgets=[],
                         deleteWidget,
                         createWidget,
-                        updateWidget,
                         editWidget,
                         okWidget}) =>
     <div>
-        <ul>
             {
                 widgets.map(widget =>
-                    <li key={widget.id}>
-                        <span>
+
+                    <i key={widget.id}>
                             {
                                 widget.type === "HEADING" &&
-                                <h3>Heading Widgets</h3>
+                                <HeadingWidget widget={widget}
+                                               deleteWidget={deleteWidget}
+                                               editWidget={editWidget}
+                                               okWidget={okWidget}/>
                             }
                             {
                                 widget.type === "PARAGRAPH" &&
-                                <h3>Heading Widgets</h3>
+                                <ParagraphWidget widget={widget}
+                                                 deleteWidget={deleteWidget}
+                                                 editWidget={editWidget}
+                                                 okWidget={okWidget}/>
                             }
-                            <button className="fa fa-arrow-up"/>
-                            <button className="fa fa-arrow-down"/>
-                            <select>
-                                <option value="HEADING">Heading</option>
-                                <option value="PARAGRAPH">Paragraph</option>
-                            </select>
-                            <button className="fa fa-times" onClick={() => deleteWidget(widget)}/>
-                        </span>
-
-
-                        {
-                            widget.type === "HEADING" &&
-                            <HeadingWidget/>
-                        }
-                        {
-                            widget.type === "PARAGRAPH" &&
-                            <ParagraphWidget/>
-                        }
-
-
-                            {
-                                widget.editing &&
-                                <span><input
-                                    onChange={(event) => updateWidget({
-                                        ...widget,
-                                        name: event.target.value
-                                    })}
-                                    value={widget.name}/>
-                <button onClick={() => okWidget(widget)}>
-                  Ok
-                </button>
-                </span>
-                            }
-                            {
-                                ! widget.editing &&
-                                    <span>{widget.name}{widget.type}
-                                    <button onClick={() => editWidget(widget)}>Edit</button>
-                                    </span>
-                            }
-
-
-                        </li>
+                    </i>
                 )
             }
-        </ul>
         <button onClick={createWidget}>Create</button>
     </div>
+
+
+
+
 
 // export default WidgetList
 
