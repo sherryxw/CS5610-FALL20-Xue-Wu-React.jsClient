@@ -18,7 +18,8 @@ const topicPillsReducer = (state=initialState, action) => {
                 topicPills: [
                     ...state.topicPills,
                     action.topicPills
-                ]
+                ],
+                topicPillsId: action.topicPillId
             }
         case "DELETE_TOPIC":
             return {

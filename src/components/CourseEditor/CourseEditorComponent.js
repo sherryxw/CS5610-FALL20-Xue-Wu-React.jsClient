@@ -9,15 +9,17 @@ import {connect} from "react-redux";
 import LessonService from "../../services/LessonService";
 import ModuleService from "../../services/ModuleService";
 import TopicPillsService from "../../services/TopicPillsService";
+import WidgetService from "../../services/WidgetService"
 
 
 class CourseEditorComponent extends React.Component {
-
+    //when refresh the screen
     //fetching the course info from url, copy in the local state
     componentDidMount() {
         const courseId = this.props.match.params.courseId
         const moduleId = this.props.match.params.moduleId
         const lessonId = this.props.match.params.lessonId
+        const topicId = this.props.match.params.topicId
         if(courseId) {
             this.props.findCourseById(courseId)
             this.props.findModulesForCourse(courseId)
@@ -25,18 +27,24 @@ class CourseEditorComponent extends React.Component {
             this.props.clearTopic("0000")
             this.props.clearLesson("0000")
         }
-
         if(moduleId) {
             this.props.findLessonsForModule(moduleId)
         }
         if(lessonId) {
             this.props.findTopicPillsForLesson(lessonId)
         }
+        if(topicId) {
+            this.props.findWidgetsForTopic(topicId)
+        }
+        this.props.findAllWidgets()
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
+        //whne update the screen
         const moduleId = this.props.match.params.moduleId
         const lessonId = this.props.match.params.lessonId
+        const topicId = this.props.match.params.topicPillId
+
         if(moduleId !== prevProps.match.params.moduleId) {
             if(moduleId) {
                 this.props.findLessonsForModule(moduleId)
@@ -44,12 +52,15 @@ class CourseEditorComponent extends React.Component {
                 this.props.clearTopic("000")
             }
         }
-
         if(lessonId !== prevProps.match.params.lessonId) {
             if(lessonId){
                 this.props.findTopicPillsForLesson(lessonId)
             }
         }
+        if(topicId) {
+            this.props.findWidgetsForTopic(topicId)
+        }
+
     }
 
 
@@ -75,19 +86,8 @@ class CourseEditorComponent extends React.Component {
                     <div className="col-8 border-set border border-dark">
                         <TopicPillsComponent/>
                     <br/>
-                        <div className="d-flex bd-highlight justify-content-end mb-3">
-                            <div className="d-flex align-items-center">
-                                <span className="d-flex"><button className="btn btn-success btn-sm"
-                                                                 type="submit">Save</button></span>
-                                <span className="d-flex"><a className="nav-link pre" href="#">Preview</a></span>
-                                <span className="custom-control custom-switch">
-                                    <input type="checkbox" className="custom-control-input" id="customSwitches"/>
-                                    <label className="custom-control-label" htmlFor="customSwitches"/></span>
-                            </div>
-                        </div>
                         <br/>
                         <WidgetListContainer/>
-                        <i className="fa fa-2x fa-plus-square pull-right wbdv-sticky-button" aria-hidden="true"/>
                     </div>
                 </div>
             </div>
@@ -102,6 +102,9 @@ const stateToPropertyMapper = (state) => ({
 
 
 const propertyToDispatchMapper = (dispatch) => ({
+    findAllWidgets: () => WidgetService.findAllWidgets().then(widgets => dispatch({
+        type: "FIND_WIDGETS_FOR_TOPIC", widgets
+        })),
     //reading from url -> go to the server -> set courses to be actual course, dispatch to the reducer
     findCourseById: (courseId) => findCourseById(courseId)
         .then(actualCourse => dispatch({
@@ -111,7 +114,7 @@ const propertyToDispatchMapper = (dispatch) => ({
     findModulesForCourse: (courseId) => ModuleService.findModulesForCourse(courseId)
         .then(actualModules => dispatch({
             type: "FIND_MODULES_FOR_COURSE",
-            modules: actualModules
+            modules: actualModules,
         })),
     findLessonsForModule: (moduleId) => LessonService.findLessonsForModule(moduleId)
         .then(lessons => dispatch({
@@ -120,6 +123,10 @@ const propertyToDispatchMapper = (dispatch) => ({
     findTopicPillsForLesson: (lessonId) => TopicPillsService.findTopicPillsForLesson(lessonId)
         .then(topicPills => dispatch({
             type: "FIND_TOPICS_FOR_LESSON", topicPills, lessonId
+        })),
+    findWidgetsForTopic: (topicId) => WidgetService.findWidgetsForTopic(topicId)
+        .then(widgets => dispatch({
+            type: "FIND_ALL_WIDGETS_FOR_TOPIC", widgets
         })),
     clearTopic: (noLessonId) => TopicPillsService.findTopicPillsForLesson(noLessonId)
         .then(topicPills => dispatch({
