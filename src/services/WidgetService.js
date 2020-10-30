@@ -1,5 +1,5 @@
 const WIDGET_URL = "http://localhost:8080/api/widgets"
-const TOPIC_URL  = "http://localhost:8080/api/topics" //base url
+const TOPIC_URL  = "http://localhost:8080/api/topics"
 
 const findAllWidgets = () =>
     fetch(WIDGET_URL)
@@ -10,16 +10,20 @@ const findWidgetsForTopic = (topicId) =>
         .then(response => response.json())
 
 //should accept an object in ()
-const createWidget = () =>
-    fetch(WIDGET_URL, {
-        method: "POST",
-        body: JSON.stringify({name: "NEW HEADING", type: "HEADING"}),
-        headers: {
-            "content-type": "application/json"
-        }
-    })
+export const createWidgetForTopic = (topicId, widget) =>
+    fetch(`${TOPIC_URL}/${topicId}/widgets`,
+        {
+            method: "POST",
+            body: JSON.stringify({
+                ...widget,
+                topicId
+            }),
+            headers: {
+                "content-type": "application/json"
+            }
+        })
         .then(response => response.json())
 
 export default {
-    findAllWidgets, createWidget, findWidgetsForTopic
+    findAllWidgets, createWidgetForTopic, findWidgetsForTopic
 }

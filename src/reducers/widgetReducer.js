@@ -11,16 +11,21 @@ const widgetReducer = (state = initialState, action) => {
         case "FIND_WIDGETS_FOR_TOPIC":
             return {
                 ...state,
-                widgets: action.widgets
+                widgets: action.widgets,
+                topicId: action.topicId
             }
         case "FIND_ALL_WIDGETS":
             return {
                 ...state,
                 widgets: action.widgets
             }
-        case CREATE_WIDGET:
+        case "CREAT_WIDGET_FOR_TOPIC":
             return {
-                widgets: [...state.widgets, action.widget]
+                ...state,
+                widgets: [
+                    ...state.widgets,
+                    action.widget
+                ]
             }
         case UPDATE_WIDGET:
             return {

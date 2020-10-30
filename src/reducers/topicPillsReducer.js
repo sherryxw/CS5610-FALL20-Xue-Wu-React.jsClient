@@ -9,7 +9,6 @@ const topicPillsReducer = (state=initialState, action) => {
             return {
                 ...state,
                 topicPills: action.topicPills,
-                topicPillsId: action.topicPillId,
                 lessonId: action.lessonId
             }
         case "CREATE_TOPIC":
@@ -18,13 +17,12 @@ const topicPillsReducer = (state=initialState, action) => {
                 topicPills: [
                     ...state.topicPills,
                     action.topicPills
-                ],
-                topicPillsId: action.topicPillId
+                ]
             }
         case "DELETE_TOPIC":
             return {
                 ...state,
-                topicPills: state.topicPills.filter(topicPill => topicPill._id !== action.topicPillId)
+                topicPills: state.topicPills.filter(topicPill => topicPill._id !== action.topicId)
             }
         case "UPDATE_TOPIC":
             return {

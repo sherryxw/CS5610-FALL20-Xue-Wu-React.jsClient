@@ -36,6 +36,7 @@ class CourseEditorComponent extends React.Component {
         if(topicId) {
             this.props.findWidgetsForTopic(topicId)
         }
+
         // this.props.findAllWidgets()
     }
 
@@ -57,6 +58,7 @@ class CourseEditorComponent extends React.Component {
                 this.props.findTopicPillsForLesson(lessonId)
             }
         }
+
         if(topicId) {
             this.props.findWidgetsForTopic(topicId)
         }
@@ -114,7 +116,7 @@ const propertyToDispatchMapper = (dispatch) => ({
     findModulesForCourse: (courseId) => ModuleService.findModulesForCourse(courseId)
         .then(actualModules => dispatch({
             type: "FIND_MODULES_FOR_COURSE",
-            modules: actualModules,
+            modules: actualModules, courseId
         })),
     findLessonsForModule: (moduleId) => LessonService.findLessonsForModule(moduleId)
         .then(lessons => dispatch({
@@ -126,7 +128,7 @@ const propertyToDispatchMapper = (dispatch) => ({
         })),
     findWidgetsForTopic: (topicId) => WidgetService.findWidgetsForTopic(topicId)
         .then(widgets => dispatch({
-            type: "FIND_WIDGETS_FOR_TOPIC", widgets
+            type: "FIND_WIDGETS_FOR_TOPIC", widgets, topicId
         })),
     clearTopic: (noLessonId) => TopicPillsService.findTopicPillsForLesson(noLessonId)
         .then(topicPills => dispatch({
