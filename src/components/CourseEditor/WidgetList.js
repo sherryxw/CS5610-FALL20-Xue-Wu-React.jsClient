@@ -5,7 +5,6 @@ import ParagraphWidget from "../widgets/ParagraphWidget";
 import {createWidget, deleteWidget, editWidget, okWidget, updateWidget} from "../../actions/widgetActions";
 
 
-
 const WidgetList = ({
                         widgets=[],
                         deleteWidget,
@@ -14,43 +13,60 @@ const WidgetList = ({
                         editWidget,
                         okWidget}) =>
     <div>
-        <h1>Widgets!!</h1>
         <ul>
             {
                 widgets.map(widget =>
-                        <li key={widget.id}>
-                            {JSON.stringify(widget)}
-                            <button
-                                onClick={() => deleteWidget(widget)}>
-                                Delete
-                            </button>
-                {/*            {*/}
-                {/*                widget.editing &&*/}
-                {/*                <span><input*/}
-                {/*                    onChange={(event) => updateWidget({*/}
-                {/*                        ...widget,*/}
-                {/*                        name: event.target.value*/}
-                {/*                    })}*/}
-                {/*                    value={widget.name}/>*/}
-                {/*<button onClick={() => okWidget(widget)}>*/}
-                {/*  Ok*/}
-                {/*</button>*/}
-                {/*</span>*/}
-                {/*            }*/}
-
-                                    {
-                                        widget.type === "HEADING" &&
-                                        <HeadingWidget/>
-                                    }
-                                    {
-                                        widget.type === "PARAGRAPH" &&
-                                        <ParagraphWidget/>
-                                    }
-                                    <button onClick={() => editWidget(widget)}>
-                    Edit
-                  </button>
-                {/*</span>*/}
+                    <li key={widget.id}>
+                        <span>
+                            {
+                                widget.type === "HEADING" &&
+                                <h3>Heading Widgets</h3>
                             }
+                            {
+                                widget.type === "PARAGRAPH" &&
+                                <h3>Heading Widgets</h3>
+                            }
+                            <button className="fa fa-arrow-up"/>
+                            <button className="fa fa-arrow-down"/>
+                            <select>
+                                <option value="HEADING">Heading</option>
+                                <option value="PARAGRAPH">Paragraph</option>
+                            </select>
+                            <button className="fa fa-times" onClick={() => deleteWidget(widget)}/>
+                        </span>
+
+
+                        {
+                            widget.type === "HEADING" &&
+                            <HeadingWidget/>
+                        }
+                        {
+                            widget.type === "PARAGRAPH" &&
+                            <ParagraphWidget/>
+                        }
+
+
+                            {
+                                widget.editing &&
+                                <span><input
+                                    onChange={(event) => updateWidget({
+                                        ...widget,
+                                        name: event.target.value
+                                    })}
+                                    value={widget.name}/>
+                <button onClick={() => okWidget(widget)}>
+                  Ok
+                </button>
+                </span>
+                            }
+                            {
+                                ! widget.editing &&
+                                    <span>{widget.name}{widget.type}
+                                    <button onClick={() => editWidget(widget)}>Edit</button>
+                                    </span>
+                            }
+
+
                         </li>
                 )
             }

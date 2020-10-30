@@ -2,12 +2,7 @@ import {DELETE_WIDGET, CREATE_WIDGET, UPDATE_WIDGET} from "../actions/widgetActi
 
 const initialState = {
     widgets: [
-        {
-            id: "123"
-        },
-        {
-            id: "234"
-        }
+
     ]
 }
 

@@ -1,5 +1,5 @@
 const WIDGET_URL = "http://localhost:8080/api/widgets"
-const TOPIC_URL  = "http://localhost:8080/api/topics"
+const TOPIC_URL  = "http://localhost:8080/api/topics" //base url
 
 const findAllWidgets = () =>
     fetch(WIDGET_URL)
@@ -9,6 +9,7 @@ const findWidgetsForTopic = (topicId) =>
     fetch(`${TOPIC_URL}/${topicId}/widgets`)
         .then(response => response.json())
 
+//should accept an object in ()
 const createWidget = () =>
     fetch(WIDGET_URL, {
         method: "POST",

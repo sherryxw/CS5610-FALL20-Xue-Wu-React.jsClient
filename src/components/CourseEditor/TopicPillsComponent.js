@@ -18,12 +18,12 @@ const topicPills = ({topicPills=[],
         <ul className="nav nav-pills wbdv-topic-pill-list">
             <li>
                 <Link to={`/edit/course/${course._id}/modules/${moduleId}/lessons/${lessonId}/topics/topic123`}
-                      className={`nav-link wbdv-topic-pill`}>
+                      className="nav-link">
                       Topic123</Link>
             </li>
             <li>
                 <Link to={`/edit/course/${course._id}/modules/${moduleId}/lessons/${lessonId}/topics/topic234`}
-                      className={`nav-link wbdv-topic-pill`}>
+                      className="nav-link">
                 Topic234</Link>
 
             </li>

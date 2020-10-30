@@ -16,6 +16,7 @@ export const updateWidget = (dispatch, widget) =>
 export const deleteWidget = (dispatch, widget) =>
     dispatch({type: DELETE_WIDGET, widget})
 
+//go to server first then dispatch
 export const createWidget = (dispatch) =>
     WidgetService.createWidget()
         .then(widget => dispatch({

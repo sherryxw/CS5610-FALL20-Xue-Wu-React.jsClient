@@ -36,14 +36,14 @@ class CourseEditorComponent extends React.Component {
         if(topicId) {
             this.props.findWidgetsForTopic(topicId)
         }
-        this.props.findAllWidgets()
+        // this.props.findAllWidgets()
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         //whne update the screen
         const moduleId = this.props.match.params.moduleId
         const lessonId = this.props.match.params.lessonId
-        const topicId = this.props.match.params.topicPillId
+        const topicId = this.props.match.params.topicId
 
         if(moduleId !== prevProps.match.params.moduleId) {
             if(moduleId) {
@@ -126,7 +126,7 @@ const propertyToDispatchMapper = (dispatch) => ({
         })),
     findWidgetsForTopic: (topicId) => WidgetService.findWidgetsForTopic(topicId)
         .then(widgets => dispatch({
-            type: "FIND_ALL_WIDGETS_FOR_TOPIC", widgets
+            type: "FIND_WIDGETS_FOR_TOPIC", widgets
         })),
     clearTopic: (noLessonId) => TopicPillsService.findTopicPillsForLesson(noLessonId)
         .then(topicPills => dispatch({
