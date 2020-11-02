@@ -1,9 +1,5 @@
-import {DELETE_WIDGET, CREATE_WIDGET, UPDATE_WIDGET} from "../actions/widgetActions"
-
 const initialState = {
-    widgets: [
-
-    ]
+    widgets: []
 }
 
 const widgetReducer = (state = initialState, action) => {
@@ -27,16 +23,17 @@ const widgetReducer = (state = initialState, action) => {
                     action.widget
                 ]
             }
-        case UPDATE_WIDGET:
+        case "UPDATE_WIDGET":
             return {
-                widgets: state.widgets.map(
-                    widget => widget._id === action.widget._id ?
-                        action.widget : widget)
+                ...state,
+                widgets: state.widgets.map(widget =>
+                widget.id === action.widget.id ? action.widget: widget)
             }
-        case DELETE_WIDGET:
+        case "DELETE_WIDGET":
             return {
                 widgets: state.widgets.filter(widget => widget !== action.widget)
             }
+
         default:
             return state
     }

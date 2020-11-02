@@ -26,6 +26,7 @@ class CourseEditorComponent extends React.Component {
             //clean lesson and topic
             this.props.clearTopic("0000")
             this.props.clearLesson("0000")
+            this.props.cleanWidget("00000")
         }
         if(moduleId) {
             this.props.findLessonsForModule(moduleId)
@@ -36,8 +37,6 @@ class CourseEditorComponent extends React.Component {
         if(topicId) {
             this.props.findWidgetsForTopic(topicId)
         }
-
-        // this.props.findAllWidgets()
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -51,6 +50,7 @@ class CourseEditorComponent extends React.Component {
                 this.props.findLessonsForModule(moduleId)
                 //topic should be empty here
                 this.props.clearTopic("000")
+                this.props.cleanWidget("0000")
             }
         }
         if(lessonId !== prevProps.match.params.lessonId) {
@@ -137,6 +137,10 @@ const propertyToDispatchMapper = (dispatch) => ({
     clearLesson: (noModuleId) => LessonService.findLessonsForModule(noModuleId)
         .then(lesson => dispatch({
             type: "FIND_LESSONS_FOR_MODULE", lesson, noModuleId
+        })),
+    cleanWidget: (noTopicId) => WidgetService.findWidgetsForTopic(noTopicId)
+        .then(widget => dispatch({
+            type: "FIND_WIDGETS_FOR_TOPIC", widget, noTopicId
         }))
 
 })

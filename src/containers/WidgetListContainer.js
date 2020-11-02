@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import WidgetList from "../components/CourseEditor/WidgetList";
-import {deleteWidget, updateWidget, editWidget, okWidget} from "../actions/widgetActions"
+import {deleteWidget} from "../actions/widgetActions"
 
 
 const stateToPropertyMapper = (state) => ({
@@ -11,9 +11,6 @@ const stateToPropertyMapper = (state) => ({
 
 const propertyToDispatchMapper = (dispatch) => ({
     deleteWidget: (widget) => deleteWidget(dispatch, widget),
-    updateWidget: (widget) => updateWidget(dispatch, widget),
-    editWidget: (widget) => editWidget(dispatch, widget),
-    okWidget: (widget) => okWidget(dispatch, widget)
 })
 
 
