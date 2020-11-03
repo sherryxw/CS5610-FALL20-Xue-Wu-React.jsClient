@@ -1,19 +1,17 @@
 import React from "react";
 
-const HeadingWidget = (
-    {
-        editing, widget,deleteWidget, editWidget
-    }) => (
+
+const HeadingWidget = ({editing, widget, updateWidget, deleteWidget}) => (
     <div>
+        {JSON.stringify(widget.id)}
         {
             editing &&
             <div>
                 <h3>Heading Widgets
                     <button className="fa fa-times float-right" onClick={() => deleteWidget(widget.id)}/>
-                    <select className="float-right" value={widget.type} onChange={event => editWidget({
-                        ...widget,
-                        type: event.target.value
-                    })}>
+                    <select className="float-right" value={widget.type}
+                            onChange={(event) => updateWidget({
+                            ...widget, type: event.target.value})}>
                         <option value="HEADING">Heading</option>
                         <option value="PARAGRAPH">Paragraph</option>
                     </select>
@@ -21,12 +19,12 @@ const HeadingWidget = (
                     <button className="fa fa-arrow-up float-right"/>
                 </h3>
                 <input className="form-control" placeholder="Heading Text" value={widget.text || ""}
-                       id={`headingWidgetText${widget.id}`} onChange={(event) => editWidget({
+                       id={`headingWidgetText${widget.id}`} onChange={(event) => updateWidget({
                     ...widget,
                     text: event.target.value
                 })} />
                 <select className="form-control" value={widget.size} id={`headingWidgetSize${widget.id}`}
-                        onChange={(event) => editWidget({
+                        onChange={(event) => updateWidget({
                     ...widget,
                     size: parseInt(event.target.value)
                 })}>
@@ -38,7 +36,7 @@ const HeadingWidget = (
                     <option value="6">Heading 6</option>
                 </select>
                 <input value={widget.name || ""} placeholder="Name" className="form-control" id={`headingWidgetName${widget.id}`}
-                       onChange={(event => editWidget({
+                       onChange={(event => updateWidget({
                     ...widget,
                     name: event.target.value
                 }))}/>

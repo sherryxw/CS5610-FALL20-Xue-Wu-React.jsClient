@@ -35,10 +35,10 @@ const deleteWidget = (wid) =>
         method: "DELETE"})
     .then(response => response.json())
 
-const updateWidgetForTopic = (topicId, widget) =>
+const updateWidgetForTopic = (topicId, widgets) =>
     fetch(`${TOPIC_URL}/${topicId}/widgets`, {
         method: "PUT",
-        body: JSON.stringify(widget),
+        body: JSON.stringify(widgets),
         headers: {
             "content-type": "application/json"
         }

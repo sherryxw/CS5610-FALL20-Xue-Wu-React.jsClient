@@ -1,14 +1,14 @@
 import React from "react";
 
 
-const ParagraphWidget = ({editing, widget, editWidget,deleteWidget}) =>
+const ParagraphWidget = ({editing, widget, updateWidget,deleteWidget}) =>
     <div>
         {
             editing &&
             <div>
                 <h3>Paragraph Widgets
-                    <button className="fa fa-times float-right" onClick={() => deleteWidget(widget)}/>
-                    <select className="float-right" value={widget.type} onChange={event => editWidget({
+                    <button className="fa fa-times float-right" onClick={() => deleteWidget(widget.id)}/>
+                    <select className="float-right" value={widget.type} onChange={event => updateWidget({
                         ...widget,
                         type: event.target.value
                     })}>
@@ -19,11 +19,12 @@ const ParagraphWidget = ({editing, widget, editWidget,deleteWidget}) =>
                     <button className="fa fa-arrow-up float-right"/>
                 </h3>
                 <input className="form-control" placeholder="Paragraph Text" value={widget.text || ""}
-                       onChange={(event) => editWidget({
+                       onChange={event => updateWidget({
                            ...widget,
                            text: event.target.value
                        })} />
-                <input value={widget.name || ""} placeholder="Paragraph Name" className="form-control" onChange={(event => editWidget({
+                <input value={widget.name || ""} placeholder="Paragraph Name" className="form-control"
+                       onChange={(event => updateWidget({
                     ...widget,
                     name: event.target.value
                 }))}/>

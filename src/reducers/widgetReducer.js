@@ -2,7 +2,7 @@ const initialState = {
     widgets: []
 }
 
-const widgetReducer = (state = initialState, action) => {
+export const widgetReducer = (state = initialState, action) => {
     switch (action.type) {
         case "FIND_WIDGETS_FOR_TOPIC":
             return {
@@ -30,6 +30,7 @@ const widgetReducer = (state = initialState, action) => {
                 widget.id === action.widget.id ? action.widget: widget)
             }
         case "DELETE_WIDGET":
+        {JSON.stringify(action.widgetId)}
             return {
                 widgets: state.widgets.filter(widget => widget.id !== action.widgetId)
             }
