@@ -2,14 +2,14 @@ import React from "react";
 
 const HeadingWidget = (
     {
-        editing, widget,deleteWidget, editWidget, okWidget
+        editing, widget,deleteWidget, editWidget
     }) => (
     <div>
         {
             editing &&
             <div>
                 <h3>Heading Widgets
-                    <button className="fa fa-times float-right" onClick={() => deleteWidget(widget)}/>
+                    <button className="fa fa-times float-right" onClick={() => deleteWidget(widget.id)}/>
                     <select className="float-right" value={widget.type} onChange={event => editWidget({
                         ...widget,
                         type: event.target.value
@@ -20,7 +20,7 @@ const HeadingWidget = (
                     <button className="fa fa-arrow-down float-right"/>
                     <button className="fa fa-arrow-up float-right"/>
                 </h3>
-                <input className="form-control" placeholder="Heading Text" value={widget.text}
+                <input className="form-control" placeholder="Heading Text" value={widget.text || ""}
                 onChange={(event) => editWidget({
                     ...widget,
                     text: event.target.value
@@ -37,7 +37,7 @@ const HeadingWidget = (
                     <option value="5">Heading 5</option>
                     <option value="6">Heading 6</option>
                 </select>
-                <input value={widget.name} placeholder="Name" className="form-control" onChange={(event => editWidget({
+                <input value={widget.name || ""} placeholder="Name" className="form-control" onChange={(event => editWidget({
                     ...widget,
                     name: event.target.value
                 }))}/>
@@ -56,7 +56,7 @@ const HeadingWidget = (
         {
             ! editing &&
             <span>
-                <span>Heading Widget</span>
+                <h1>Heading Widget</h1>
                 {widget.size === 1 && <h1>{widget.text}</h1>}
                 {widget.size === 2 && <h2>{widget.text}</h2>}
                 {widget.size === 3 && <h3>{widget.text}</h3>}

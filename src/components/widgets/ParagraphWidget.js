@@ -1,10 +1,10 @@
 import React from "react";
 
 
-const ParagraphWidget = (editing,widget, editWidget,deleteWidget) =>
+const ParagraphWidget = ({editing, widget, editWidget,deleteWidget}) =>
     <div>
         {
-            editing === true &&
+            editing &&
             <div>
                 <h3>Paragraph Widgets
                     <button className="fa fa-times float-right" onClick={() => deleteWidget(widget)}/>
@@ -18,13 +18,12 @@ const ParagraphWidget = (editing,widget, editWidget,deleteWidget) =>
                     <button className="fa fa-arrow-down float-right"/>
                     <button className="fa fa-arrow-up float-right"/>
                 </h3>
-                <input className="form-control" placeholder="Paragraph Text"
+                <input className="form-control" placeholder="Paragraph Text" value={widget.text || ""}
                        onChange={(event) => editWidget({
                            ...widget,
                            text: event.target.value
-                       })} value={widget.text}/>
-                <input value={widget.name} type="text" placeholder="Widget Name" className="form-control"
-                       onChange={(event => editWidget({
+                       })} />
+                <input value={widget.name || ""} placeholder="Paragraph Name" className="form-control" onChange={(event => editWidget({
                     ...widget,
                     name: event.target.value
                 }))}/>
@@ -34,10 +33,8 @@ const ParagraphWidget = (editing,widget, editWidget,deleteWidget) =>
             </div>
         }
         {
-            editing === false &&
-            <span>
-                Title: {widget.title}
-            </span>
+            !editing &&
+            <h1>{widget.text}</h1>
         }
     </div>
 

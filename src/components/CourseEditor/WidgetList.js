@@ -11,8 +11,7 @@ const WidgetList = ({
                         deleteWidget,
                         createWidgetForTopic,
                         saveButton,
-                        editWidget,
-                        okWidget}) =>
+                        editWidget}) =>
     <div>
         {
             widgets.map(widget =>
@@ -20,8 +19,8 @@ const WidgetList = ({
                     <div className="d-flex bd-highlight justify-content-end mb-3">
                         <div className="d-flex align-items-center">
                             <span className="d-flex"><button className="btn btn-success btn-sm" type="submit"
-                                                         onClick={() => {saveButton(topicId,widget); editing=false}}>Save</button></span>
-                            <span className="d-flex"><a className="nav-link pre" href="#">Preview</a></span>
+                                                         onClick={() => saveButton(topicId,widget)}>Save</button></span>
+                            <button className="d-flex btn btn-dark btn-sm" onClick={()=>editing=false}>Preview</button>
                             <button onClick={() => {editWidget(widget); editing=true}}>Edit
                             </button>
                         </div>
@@ -74,12 +73,6 @@ const propertyToDispatchMapper = (dispatch) => ({
     editWidget: (widget) => WidgetService.updateWidget(widget)
         .then(status => dispatch({
         type: "UPDATE_WIDGET", widget
-    })),
-
-    okWidget: (widget) => WidgetService.updateWidget({
-        ...widget, editing: false
-    }).then(status => dispatch({
-        type: "UPDATE_WIDGET", widget: {...widget, editing: false}
     })),
     saveButton: (topicId, widget) => WidgetService.updateWidget(widget)
         .then(status => dispatch({
