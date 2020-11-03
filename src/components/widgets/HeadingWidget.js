@@ -21,12 +21,12 @@ const HeadingWidget = (
                     <button className="fa fa-arrow-up float-right"/>
                 </h3>
                 <input className="form-control" placeholder="Heading Text" value={widget.text || ""}
-                onChange={(event) => editWidget({
+                       id={`headingWidgetText${widget.id}`} onChange={(event) => editWidget({
                     ...widget,
                     text: event.target.value
                 })} />
-                <select className="form-control" value={widget.size} onChange={(event) =>
-                    editWidget({
+                <select className="form-control" value={widget.size} id={`headingWidgetSize${widget.id}`}
+                        onChange={(event) => editWidget({
                     ...widget,
                     size: parseInt(event.target.value)
                 })}>
@@ -37,7 +37,8 @@ const HeadingWidget = (
                     <option value="5">Heading 5</option>
                     <option value="6">Heading 6</option>
                 </select>
-                <input value={widget.name || ""} placeholder="Name" className="form-control" onChange={(event => editWidget({
+                <input value={widget.name || ""} placeholder="Name" className="form-control" id={`headingWidgetName${widget.id}`}
+                       onChange={(event => editWidget({
                     ...widget,
                     name: event.target.value
                 }))}/>

@@ -20,7 +20,8 @@ const WidgetList = ({
                         <div className="d-flex align-items-center">
                             <span className="d-flex"><button className="btn btn-success btn-sm" type="submit"
                                                          onClick={() => saveButton(topicId,widget)}>Save</button></span>
-                            <button className="d-flex btn btn-dark btn-sm" onClick={()=>editing=false}>Preview</button>
+                            <button className="d-flex btn btn-dark btn-sm"
+                                    onClick={()=>{editWidget(widget); editing=false}}>Preview</button>
                             <button onClick={() => {editWidget(widget); editing=true}}>Edit
                             </button>
                         </div>
@@ -44,7 +45,7 @@ const WidgetList = ({
                 </i>
             )
         }
-        <button onClick={() => createWidgetForTopic(topicId)}>Create</button>
+        <i className="fa fa-2x fa-plus-circle float-right" onClick={() => createWidgetForTopic(topicId)}/>
     </div>
 
 
