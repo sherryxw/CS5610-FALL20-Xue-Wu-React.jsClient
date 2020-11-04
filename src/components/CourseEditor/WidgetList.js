@@ -60,7 +60,10 @@ const WidgetList = ({
                 </i>
             )
         }
-        <i className="fa fa-2x fa-plus-circle float-right add-widget-button" onClick={() => createWidgetForTopic(topicId)}/>
+        {
+            topicId &&
+            <i className="fa fa-2x fa-plus-circle float-right add-widget-button" onClick={() => createWidgetForTopic(topicId)}/>
+        }
     </div>
 }
 
