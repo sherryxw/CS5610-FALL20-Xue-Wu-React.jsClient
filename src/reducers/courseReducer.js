@@ -1,9 +1,6 @@
 const initialState = {
     courses: [],
-    course: {
-        _id: "1234",
-        title: "Some bogus course"
-    }
+    course: {}
 }
 
 const courseReducer = (state=initialState, action) => {

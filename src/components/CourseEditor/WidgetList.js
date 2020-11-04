@@ -10,6 +10,7 @@ const WidgetList = ({
                         createWidgetForTopic,
                         saveButton,
                         updateWidget,
+                        moveWidgetPos,
                         deleteWidget}) => {
     const [editing, setEditing] = useState(false)
     const toggle = () => {
@@ -17,39 +18,49 @@ const WidgetList = ({
     }
 
     return <div>
-        <div className="d-flex bd-highlight justify-content-end mb-3">
-            <div className="d-flex align-items-center">
-                <button className="btn btn-success btn-sm" onClick={() => saveButton(topicId, widgets)}>Save</button>
-                <div className="custom-control custom-switch d-inline-block">
-                    <input type="checkbox" className="custom-control-input"
-                           id="customSwitches" onClick={toggle}/>
-                    <label className="custom-control-label"
-                           htmlFor="customSwitches"><strong>Preview</strong></label>
+        {
+            topicId &&
+            <div className="d-flex bd-highlight justify-content-end mb-3">
+                <div className="d-flex align-items-center">
+                    <button className="button-margin btn btn-success " onClick={() => saveButton(topicId, widgets)}>Save</button>
+                    <div className="custom-control custom-switch d-inline-block">
+                        <input type="checkbox" className="custom-control-input"
+                               id="customSwitches" onClick={toggle}/>
+                        <label className="custom-control-label preview"
+                               htmlFor="customSwitches"><strong>Preview</strong></label>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
+
         {
-            widgets.map((widget) =>
+            widgets.map((widget, index) =>
                 <i key={widget.id}>
                     {
                         widget.type === "HEADING" &&
                         <HeadingWidget key={widget.id}
+                                       index={index}
                                        editing={editing}
+                                       length={widgets.length}
                                        widget={widget}
+                                       moveWidgetPos={moveWidgetPos}
                                        deleteWidget={deleteWidget}
                                        updateWidget={updateWidget}/>
                     }
                     {widget.type === "PARAGRAPH" &&
                     <ParagraphWidget key={widget.id}
+                                     index={index}
                                      editing={editing}
+                                     length={widgets.length}
                                      widget={widget}
+                                     moveWidgetPos={moveWidgetPos}
                                      deleteWidget={deleteWidget}
                                      updateWidget={updateWidget}/>
                     }
                 </i>
             )
         }
-        <i className="fa fa-2x fa-plus-circle float-right" onClick={() => createWidgetForTopic(topicId)}/>
+        <i className="fa fa-2x fa-plus-circle float-right add-widget-button" onClick={() => createWidgetForTopic(topicId)}/>
     </div>
 }
 
@@ -75,7 +86,8 @@ const propertyToDispatchMapper = (dispatch) => ({
     saveButton: (topicId, widgets) => WidgetService.updateWidgetForTopic(topicId, widgets),
     updateWidget: (widget) => dispatch({
             type: "UPDATE_WIDGET", widget
-        })
+        }),
+    moveWidgetPos: (fromPos, toPos) => dispatch({type: "MOVE_POSITION", fromPos, toPos})
 })
 
 

@@ -51,8 +51,11 @@ const LessonTabs = (
                 )
             }
         </ul>
-        <i onClick={() => createLesson(moduleId)}
-           className="nav-link fa fa-plus wbdv-lesson-add-btn fa-2x pull-right" aria-hidden="true"/>
+        {
+            moduleId &&
+            <i onClick={() => createLesson(moduleId)}
+               className="fa fa-2x fa-plus-circle wbdv-lesson-add-btn pull-right" aria-hidden="true"/>
+        }
     </div>
 
 const stateToPropertyMapper = (state) => ({

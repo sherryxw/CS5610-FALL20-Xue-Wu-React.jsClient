@@ -16,17 +16,6 @@ const topicPills = ({topicPills=[],
 }) =>
     <div>
         <ul className="nav nav-pills wbdv-topic-pill-list">
-            {/*<li>*/}
-            {/*    <Link to={`/edit/course/${course._id}/modules/${moduleId}/lessons/${lessonId}/topics/topic123`}*/}
-            {/*          className="nav-link">*/}
-            {/*          Topic123</Link>*/}
-            {/*</li>*/}
-            {/*<li>*/}
-            {/*    <Link to={`/edit/course/${course._id}/modules/${moduleId}/lessons/${lessonId}/topics/topic234`}*/}
-            {/*          className="nav-link">*/}
-            {/*    Topic234</Link>*/}
-
-            {/*</li>*/}
             {
                 topicPills.map(topicPill =>
                     <li className={`nav-item 
@@ -60,8 +49,11 @@ const topicPills = ({topicPills=[],
                 )
             }
         </ul>
-        <i onClick={() => createTopic(lessonId)}
-           className="fa fa-plus fa-2x nav-link wbdv-topic-pill wbdv-topic-add-btn pull-right" aria-hidden="true"/>
+        {
+            lessonId &&
+            <i onClick={() => createTopic(lessonId)}
+               className="fa fa-2x fa-plus-circle topic-pill-button pull-right" aria-hidden="true"/>
+        }
     </div>
 
 

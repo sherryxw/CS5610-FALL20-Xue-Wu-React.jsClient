@@ -1,29 +1,40 @@
 import React from "react";
 
 
-const HeadingWidget = ({editing, widget, updateWidget, deleteWidget}) => (
+
+const HeadingWidget = ({editing, index, length, widget, moveWidgetPos,updateWidget, deleteWidget}) => (
     <div>
-        {JSON.stringify(widget.id)}
         {
             editing &&
             <div>
                 <h3>Heading Widgets
-                    <button className="fa fa-times float-right" onClick={() => deleteWidget(widget.id)}/>
+                    <button className="fa fa-times widget-delete-button float-right button-margin"
+                            onClick={() => deleteWidget(widget.id)}/>
                     <select className="float-right" value={widget.type}
                             onChange={(event) => updateWidget({
                             ...widget, type: event.target.value})}>
                         <option value="HEADING">Heading</option>
                         <option value="PARAGRAPH">Paragraph</option>
                     </select>
-                    <button className="fa fa-arrow-down float-right"/>
-                    <button className="fa fa-arrow-up float-right"/>
+                    {
+                        //position down button disappear when the widget is at the bottom
+                        index < length - 1 &&
+                        <button className="fa fa-arrow-down position-button float-right"
+                                onClick={() => moveWidgetPos(index, index + 1)}/>
+                    }
+                    {
+                        //position up button disappear when the widget is on the top
+                        index > 0 &&
+                        <button className="fa fa-arrow-up position-button float-right"
+                                onClick={() => moveWidgetPos(index, index-1)}/>
+                    }
                 </h3>
-                <input className="form-control" placeholder="Heading Text" value={widget.text || ""}
+                <input className="form-control input-field" placeholder="Heading Text" value={widget.text || ""}
                        id={`headingWidgetText${widget.id}`} onChange={(event) => updateWidget({
                     ...widget,
                     text: event.target.value
                 })} />
-                <select className="form-control" value={widget.size} id={`headingWidgetSize${widget.id}`}
+                <select className="form-control input-field" value={widget.size} id={`headingWidgetSize${widget.id}`}
                         onChange={(event) => updateWidget({
                     ...widget,
                     size: parseInt(event.target.value)
@@ -35,7 +46,8 @@ const HeadingWidget = ({editing, widget, updateWidget, deleteWidget}) => (
                     <option value="5">Heading 5</option>
                     <option value="6">Heading 6</option>
                 </select>
-                <input value={widget.name || ""} placeholder="Name" className="form-control" id={`headingWidgetName${widget.id}`}
+                <input value={widget.name || ""} placeholder="Name" className="form-control input-field"
+                       id={`headingWidgetName${widget.id}`}
                        onChange={(event => updateWidget({
                     ...widget,
                     name: event.target.value
@@ -55,7 +67,7 @@ const HeadingWidget = ({editing, widget, updateWidget, deleteWidget}) => (
         {
             ! editing &&
             <span>
-                <h1>Heading Widget</h1>
+                <h4>---Heading Widget---</h4>
                 {widget.size === 1 && <h1>{widget.text}</h1>}
                 {widget.size === 2 && <h2>{widget.text}</h2>}
                 {widget.size === 3 && <h3>{widget.text}</h3>}

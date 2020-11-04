@@ -59,7 +59,7 @@ class CourseEditorComponent extends React.Component {
             }
         }
 
-        if(topicId !== prevProps.match.params.lessonId) {
+        if(topicId) {
             this.props.findWidgetsForTopic(topicId)
         }
 
