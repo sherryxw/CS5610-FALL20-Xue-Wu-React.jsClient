@@ -4,6 +4,7 @@ import HeadingWidget from "./widgets/HeadingWidget";
 import ParagraphWidget from "./widgets/ParagraphWidget";
 import WidgetService from "../../services/WidgetService";
 import ListWidget from "./widgets/ListWidget";
+import ImageWidget from "./widgets/ImageWidget";
 
 const WidgetList = ({
                         widgets=[],
@@ -67,6 +68,16 @@ const WidgetList = ({
                                      moveWidgetPos={moveWidgetPos}
                                      deleteWidget={deleteWidget}
                                      updateWidget={updateWidget}/>
+                    }
+                    {widget.type === "IMAGE" &&
+                    <ImageWidget key={widget.id}
+                                index={index}
+                                editing={editing}
+                                length={widgets.length}
+                                widget={widget}
+                                moveWidgetPos={moveWidgetPos}
+                                deleteWidget={deleteWidget}
+                                updateWidget={updateWidget}/>
                     }
                 </i>
             )

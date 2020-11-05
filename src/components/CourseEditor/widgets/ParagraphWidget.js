@@ -13,8 +13,9 @@ const ParagraphWidget = ({editing, widget, index, length, updateWidget,moveWidge
                         type: event.target.value
                     })}>
                         <option value="HEADING">Heading</option>
-                        <option value="LIST">List</option>
                         <option value="PARAGRAPH">Paragraph</option>
+                        <option value="LIST">List</option>
+                        <option value="IMAGE">Image</option>
                     </select>
                     {
                         //position up button disappear when the widget is on the top
