@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import {connect} from "react-redux";
-import HeadingWidget from "../widgets/HeadingWidget";
-import ParagraphWidget from "../widgets/ParagraphWidget";
+import HeadingWidget from "./widgets/HeadingWidget";
+import ParagraphWidget from "./widgets/ParagraphWidget";
 import WidgetService from "../../services/WidgetService";
+import ListWidget from "./widgets/ListWidget";
 
 const WidgetList = ({
                         widgets=[],
@@ -49,6 +50,16 @@ const WidgetList = ({
                     }
                     {widget.type === "PARAGRAPH" &&
                     <ParagraphWidget key={widget.id}
+                                     index={index}
+                                     editing={editing}
+                                     length={widgets.length}
+                                     widget={widget}
+                                     moveWidgetPos={moveWidgetPos}
+                                     deleteWidget={deleteWidget}
+                                     updateWidget={updateWidget}/>
+                    }
+                    {widget.type === "LIST" &&
+                    <ListWidget key={widget.id}
                                      index={index}
                                      editing={editing}
                                      length={widgets.length}

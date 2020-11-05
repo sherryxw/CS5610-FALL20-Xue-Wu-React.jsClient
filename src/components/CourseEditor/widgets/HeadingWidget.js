@@ -14,6 +14,7 @@ const HeadingWidget = ({editing, index, length, widget, moveWidgetPos,updateWidg
                             onChange={(event) => updateWidget({
                             ...widget, type: event.target.value})}>
                         <option value="HEADING">Heading</option>
+                        <option value="LIST">List</option>
                         <option value="PARAGRAPH">Paragraph</option>
                     </select>
                     {

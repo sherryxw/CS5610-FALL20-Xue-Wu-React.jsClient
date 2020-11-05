@@ -1,5 +1,8 @@
-const WIDGET_URL = "https://mighty-beyond-40135.herokuapp.com/api/widgets"
-const TOPIC_URL  = "https://mighty-beyond-40135.herokuapp.com/api/topics"
+// const WIDGET_URL = "https://mighty-beyond-40135.herokuapp.com/api/widgets"
+// const TOPIC_URL  = "https://mighty-beyond-40135.herokuapp.com/api/topics"
+const WIDGET_URL="http://localhost:8080/api/widgets"
+const TOPIC_URL="http://localhost:8080/api/topics"
+
 
 const findAllWidgets = () =>
     fetch(WIDGET_URL)
