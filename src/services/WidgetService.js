@@ -1,7 +1,7 @@
-const WIDGET_URL = "https://mighty-beyond-40135.herokuapp.com/api/widgets"
-const TOPIC_URL  = "https://mighty-beyond-40135.herokuapp.com/api/topics"
-// const WIDGET_URL="https://radiant-sands-60442.herokuapp.com/api/widgets"
-// const TOPIC_URL="https://radiant-sands-60442.herokuapp.com/api/topics"
+// const WIDGET_URL = "https://mighty-beyond-40135.herokuapp.com/api/widgets"
+// const TOPIC_URL  = "https://mighty-beyond-40135.herokuapp.com/api/topics"
+const WIDGET_URL="https://radiant-sands-60442.herokuapp.com/api/widgets"
+const TOPIC_URL="https://radiant-sands-60442.herokuapp.com/api/topics"
 
 
 const findAllWidgets = () =>
