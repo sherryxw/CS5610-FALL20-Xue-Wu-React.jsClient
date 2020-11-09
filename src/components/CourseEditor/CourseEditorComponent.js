@@ -30,9 +30,12 @@ class CourseEditorComponent extends React.Component {
         }
         if(moduleId) {
             this.props.findLessonsForModule(moduleId)
+            this.props.clearTopic("0000")
+            this.props.cleanWidget("00000")
         }
         if(lessonId) {
             this.props.findTopicPillsForLesson(lessonId)
+            this.props.cleanWidget("00000")
         }
         if(topicId) {
             this.props.findWidgetsForTopic(topicId)
@@ -40,7 +43,7 @@ class CourseEditorComponent extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        //whne update the screen
+        //when update the screen
         const moduleId = this.props.match.params.moduleId
         const lessonId = this.props.match.params.lessonId
         const topicId = this.props.match.params.topicId
@@ -56,10 +59,11 @@ class CourseEditorComponent extends React.Component {
         if(lessonId !== prevProps.match.params.lessonId) {
             if(lessonId){
                 this.props.findTopicPillsForLesson(lessonId)
+                this.props.cleanWidget("0000")
             }
         }
 
-        if(topicId) {
+        if(topicId !== prevProps.match.params.lessonId) {
             this.props.findWidgetsForTopic(topicId)
         }
 
