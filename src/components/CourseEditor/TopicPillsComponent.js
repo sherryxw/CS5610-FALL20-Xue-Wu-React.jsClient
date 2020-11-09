@@ -2,6 +2,8 @@ import React from "react";
 import {connect} from "react-redux";
 import TopicPillsService from "../../services/TopicPillsService";
 import {Link} from "react-router-dom";
+import "../../styling/CourseEditor.css"
+
 let selected_id = ""
 const topicPills = ({topicPills=[],
                         course={},
@@ -18,7 +20,7 @@ const topicPills = ({topicPills=[],
         <ul className="nav nav-pills wbdv-topic-pill-list">
             {
                 topicPills.map(topicPill =>
-                    <li className={`nav-item 
+                    <li className={`nav-link 
                     ${ selected_id===topicPill._id || topicId===topicPill._id ? 'tab-active' : ''}`}
                         key={topicPill._id}>
                         {
