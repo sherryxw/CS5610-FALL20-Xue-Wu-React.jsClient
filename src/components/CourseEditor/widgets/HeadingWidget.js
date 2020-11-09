@@ -22,13 +22,13 @@ const HeadingWidget = ({editing, index, length, widget, moveWidgetPos,updateWidg
                         //position down button disappear when the widget is at the bottom
                         index < length - 1 &&
                         <button className="fa fa-arrow-down position-button float-right"
-                                onClick={() => moveWidgetPos(index, index + 1)}/>
+                                onClick={() => {moveWidgetPos(index, index + 1)}}/>
                     }
                     {
                         //position up button disappear when the widget is on the top
                         index > 0 &&
                         <button className="fa fa-arrow-up position-button float-right"
-                                onClick={() => moveWidgetPos(index, index-1)}/>
+                                onClick={() => {moveWidgetPos(index, index-1)}}/>
                     }
                 </h3>
                 <input className="form-control input-field" placeholder="Heading Text" value={widget.text || ""}
